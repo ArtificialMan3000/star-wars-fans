@@ -6,7 +6,7 @@ export const getTodosAsync = createAsyncThunk('todos/getTodos', async () => {
 	return response;
 });
 
-export const todosSlice = createSlice({
+const todosSlice = createSlice({
 	name: 'todos',
 	initialState: {
 		todos: [],
