@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 /**
  *
@@ -41,34 +41,4 @@ export function useToggle(initialValue) {
 	};
 
 	return [value, toggle];
-}
-
-/**
- *
- * @param {any} initialValue переданный аргумент будет преобразован в JSON формат и сохранён в localstorage.
- * @param {String} key Ключ под именем которого будет сохранено значение первого аргумента.
- *
- * Возвращает пару:
- * @return {String} Сохранённая строка.
- * @return {Function} Функция добавляющая значение в localstorage.
- *
- */
-export function useLocalStorage(initialValue, key) {
-	function getValue() {
-		const storage = localStorage.getItem(key); // STRING || NULL
-
-		if (storage) {
-			return JSON.parse(storage); // from JSON format to STRING
-		}
-
-		return initialValue;
-	}
-
-	const [value, setValue] = useState(getValue);
-
-	useEffect(() => {
-		localStorage.setItem(key, JSON.stringify(value));
-	}, [value]);
-
-	return [value, setValue];
 }

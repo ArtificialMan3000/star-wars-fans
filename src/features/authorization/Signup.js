@@ -1,8 +1,7 @@
-import React from 'react';
 import { useState } from 'react';
-import { useFormInput } from '../auxiliary/customHooks';
+import { useFormInput } from '../../auxiliary/customHooks';
 import { useDispatch } from 'react-redux';
-import { signUp } from './authSlice';
+import { validateSignUpThunk } from './authThunks';
 import { auth, form, control, actions } from './Auth.module.css';
 
 export default function Signup() {
@@ -17,9 +16,7 @@ export default function Signup() {
 		event.preventDefault();
 		setIsPending(true);
 
-		const message = validateInput(login, pass, confirmPass, dispatch);
-
-		setAuthLog(message);
+		dispatch(validateSignUpThunk(login, pass, confirmPass, setAuthLog));
 
 		loginReset();
 		passReset();
@@ -71,27 +68,4 @@ export default function Signup() {
 			</div>
 		</div>
 	);
-}
-
-function validateInput(login, pass, confirmPass, dispatch) {
-	if (!login.trim() || !pass || !confirmPass) {
-		return 'Данные не заполнены!';
-	}
-
-	if (localStorage.getItem(login)) {
-		return 'Логин занят!';
-	}
-
-	if (pass !== confirmPass) {
-		return 'Пароли не совпадают!';
-	}
-
-	dispatch(
-		signUp({
-			login,
-			pass,
-		})
-	);
-
-	return 'Успешно!';
 }

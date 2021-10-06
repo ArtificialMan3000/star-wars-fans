@@ -3,22 +3,35 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
-		userIsLogged: false,
-		userName: '',
-		status: 'idle',
+		user: {
+			userIsLogged: false,
+			userName: '',
+		},
+		progress: {
+			status: 'idle',
+			message: '',
+			code: undefined,
+		},
 	},
 	reducers: {
-		signUp(state, action) {
-			state.status = 'loading';
-
-			localStorage.setItem(action.payload.login, action.payload.pass);
-
-			state.userName = action.payload.login;
-			state.userIsLogged = true;
-			state.status = 'idle';
+		loading(state) {
+			state.progress.status = 'loading';
+		},
+		validationProgress(state, action) {
+			state.progress.message = action.payload.message;
+			state.progress.code = action.payload.code;
+			state.progress.status = action.payload.status;
+		},
+		logInUser(state, action) {
+			state.user.userName = action.payload.login;
+			state.user.userIsLogged = true;
 		},
 	},
 });
 
-export const { signUp } = authSlice.actions;
+export function selectAuth(state) {
+	return state.auth;
+}
+
+export const { loading, validationProgress, logInUser } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,18 +1,21 @@
-import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import MainPage from './features/MainPage/MainPage';
-import Signup from './features/authorization/Signup';
-import Signin from './features/authorization/Signin';
 import Header from './features/header/Header';
+import Signin from './features/authorization/Signin';
+import Signup from './features/authorization/Signup';
+import MainPage from './features/MainPage/MainPage';
+import { useSelector } from 'react-redux';
 
 function App() {
+	const authUser = useSelector(state => state.auth.user);
+	console.log(authUser);
+
 	return (
 		<div className='container'>
 			<Header />
 			<Switch>
-				<Route exact path='/' component={MainPage} />
-				<Route path='/signup' component={Signup} />
 				<Route path='/signin' component={Signin} />
+				<Route path='/signup' component={Signup} />
+				<Route exact path='/' component={MainPage} />
 			</Switch>
 		</div>
 	);
