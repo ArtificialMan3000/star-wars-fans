@@ -79,7 +79,7 @@ export function validateSignInThunk(login, pass, setAuthLog) {
 		dispatch(logInUser({ login }));
 
 		const message = 'Пользователь авторизован';
-		const code = 201;
+		const code = 200;
 		const status = 'idle';
 		dispatch(validationProgress({ message, code, status }));
 		return setAuthLog(message);
