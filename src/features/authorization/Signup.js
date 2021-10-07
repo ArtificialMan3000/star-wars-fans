@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useFormInput } from '../../auxiliary/customHooks';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { validateSignUpThunk } from './authThunks';
 import { auth, form, control, actions } from './Auth.module.css';
 
@@ -66,6 +67,9 @@ export default function Signup() {
 					</div>
 				</form>
 			</div>
+			<p style={{ textAlign: 'center' }}>
+				<Link to='signin'>Уже есть аккаунт? Войти.</Link>
+			</p>
 		</div>
 	);
 }

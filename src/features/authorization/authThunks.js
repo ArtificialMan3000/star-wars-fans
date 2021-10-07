@@ -9,7 +9,7 @@ import { loading, validationProgress, logInUser } from './authSlice';
  */
 export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
 	return function (dispatch) {
-		dispatch(loading);
+		dispatch(loading());
 
 		if (!login.trim() || !pass || !confirmPass) {
 			const message = 'Данные не заполнены';
@@ -55,7 +55,7 @@ export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
  */
 export function validateSignInThunk(login, pass, setAuthLog) {
 	return function (dispatch) {
-		dispatch(loading);
+		dispatch(loading());
 
 		if (!login.trim() || !pass) {
 			const message = 'Данные не заполнены';

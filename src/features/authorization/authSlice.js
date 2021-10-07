@@ -26,6 +26,10 @@ const authSlice = createSlice({
 			state.user.userName = action.payload.login;
 			state.user.userIsLogged = true;
 		},
+		logout(state) {
+			state.user.userName = '';
+			state.user.userIsLogged = false;
+		},
 	},
 });
 
@@ -33,5 +37,6 @@ export function selectAuth(state) {
 	return state.auth;
 }
 
-export const { loading, validationProgress, logInUser } = authSlice.actions;
+export const { loading, validationProgress, logInUser, logout } =
+	authSlice.actions;
 export default authSlice.reducer;
