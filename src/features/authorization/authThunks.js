@@ -6,7 +6,6 @@ import { loading, validationProgress, logInUser } from './authSlice';
  * @param {String} pass  Введённый пользователем пароль.
  * @param {String} confirmPass Подтверждение пароля.
  * @param {Function} setAuthLog Функция Callback (Сеттер) для сообщения компоненте статуса регистрации.
- * @return {String} Возвращает сообщение о статусе операции.
  */
 export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
 	return function (dispatch) {
@@ -53,7 +52,6 @@ export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
  * @param {String} login Введённый пользователем логин.
  * @param {String} pass  Введённый пользователем пароль.
  * @param {Function} setAuthLog Функция Callback (Сеттер) для сообщения компоненте статуса регистрации.
- * @return {String} Возвращает сообщение о статусе операции.
  */
 export function validateSignInThunk(login, pass, setAuthLog) {
 	return function (dispatch) {
