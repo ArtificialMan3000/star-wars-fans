@@ -1,7 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { checkCurrUserThunk } from '../../features/authorization/authThunks';
 
 export default function AuthRoute({ component: Component, ...rest }) {
+	const dispatch = useDispatch();
+	useEffect(() => dispatch(checkCurrUserThunk()), [dispatch]);
 	const { userIsLogged } = useSelector(state => state.auth.user);
 
 	return (
