@@ -1,4 +1,5 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Switch, Redirect } from 'react-router-dom';
 import IsLoggedHead from './features/header/IsLoggedHead';
 import NotLoggedHead from './features/header/NotLoggedHead';
 import Signin from './features/authorization/Signin';
@@ -9,10 +10,15 @@ import History from './features/history/History';
 import NotFound from './features/notFound/NotFound';
 import ProtectedRoute from './auxiliary/routeWrappers/ProtectedRoute';
 import AuthRoute from './auxiliary/routeWrappers/AuthRoute';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkCurrUserThunk } from './features/authorization/authThunks';
 
 function App() {
+	const dispatch = useDispatch();
+	useEffect(() => dispatch(checkCurrUserThunk()), [dispatch]);
+
 	const { userIsLogged, userName } = useSelector(state => state.auth.user);
+	console.log(userIsLogged, userName);
 
 	return (
 		<div className='container'>
@@ -23,8 +29,8 @@ function App() {
 				<ProtectedRoute exact path='/' component={MainPage} />
 				<ProtectedRoute exact path='/favorites' component={Favorites} />
 				<ProtectedRoute exact path='/history' component={History} />
-				<Route exact path='/404' component={NotFound} />
-				<Redirect from='*' to='/404' />
+				<ProtectedRoute exact path='/404' component={NotFound} />
+				<Redirect to='/404' />
 			</Switch>
 		</div>
 	);

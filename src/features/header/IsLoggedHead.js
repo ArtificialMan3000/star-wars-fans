@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../authorization/authSlice';
+import { logOutUserThunk } from '../authorization/authThunks';
 
 export default function IsLoggedHead({ userName }) {
 	const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function IsLoggedHead({ userName }) {
 				<li>
 					<Link to='/history'>История</Link>
 				</li>
-				<li onClick={() => dispatch(logout())}>
+				<li onClick={() => dispatch(logOutUserThunk())}>
 					<Link to='/signin'>Выход</Link>
 				</li>
 			</ul>
