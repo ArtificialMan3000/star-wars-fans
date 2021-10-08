@@ -109,28 +109,39 @@ export function logOutUserThunk() {
 }
 
 /**
- * Функция (thunk) проверяет localstorage на наличие ключа: 'currUser'.
+ * Функция проверяет localstorage на наличие ключа: 'currUser'.
  *
- * Если ключ currUser есть в localstorage, извлекает значение 'login'
- *
- * и Авторизует данного пользователя в 'Store'.
+ * @return {Object} Если ключ currUser есть в localstorage,
+ * возвращает состояние по умолчанию с Авторизованным пользователем в reducer Аутентификации.
+ * @return {Object} Если ключа currUser нет в localstorage,
+ * возвращает состояние по умолчанию без пользователя в reducer Аутентификации.
  */
-export function checkCurrUserThunk() {
-    return function (dispatch) {
-        dispatch(loading());
+export function isCurrUserLoged() {
+    const login = localStorage.getItem('currentUser');
 
-        const login = localStorage.getItem('currentUser');
-        if (login) {
-            const message = 'Пользователь авторизован';
-            const code = 200;
-            const status = 'idle';
-            dispatch(logInUser({ login }));
-            dispatch(validationProgress({ message, code, status }));
-        } else {
-            const message = 'Пользователь не авторизован';
-            const code = 204;
-            const status = 'idle';
-            dispatch(validationProgress({ message, code, status }));
-        }
-    };
+    if (login) {
+        return {
+            user: {
+                userIsLogged: true,
+                userName: login,
+            },
+            progress: {
+                status: 'idle',
+                message: 'Пользователь авторизован',
+                code: 200,
+            },
+        };
+    } else {
+        return {
+            user: {
+                userIsLogged: false,
+                userName: '',
+            },
+            progress: {
+                status: 'idle',
+                message: 'Пользователь не авторизован',
+                code: 204,
+            },
+        };
+    }
 }

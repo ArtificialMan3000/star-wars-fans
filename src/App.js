@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import IsLoggedHead from './features/header/IsLoggedHead';
 import NotLoggedHead from './features/header/NotLoggedHead';
@@ -10,13 +9,9 @@ import History from './features/history/History';
 import NotFound from './features/notFound/NotFound';
 import ProtectedRoute from './auxiliary/routeWrappers/ProtectedRoute';
 import AuthRoute from './auxiliary/routeWrappers/AuthRoute';
-import { useSelector, useDispatch } from 'react-redux';
-import { checkCurrUserThunk } from './features/authorization/authThunks';
+import { useSelector } from 'react-redux';
 
 function App() {
-    const dispatch = useDispatch();
-    useEffect(() => dispatch(checkCurrUserThunk()), [dispatch]);
-
     const { userIsLogged, userName } = useSelector((state) => state.auth.user);
     console.log(userIsLogged, userName);
 

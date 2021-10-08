@@ -1,18 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { isCurrUserLoged } from './authThunks';
+
+const initialState = isCurrUserLoged();
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        user: {
-            userIsLogged: false,
-            userName: '',
-        },
-        progress: {
-            status: 'idle',
-            message: '',
-            code: undefined,
-        },
-    },
+    initialState,
     reducers: {
         loading(state) {
             state.progress.status = 'loading';
