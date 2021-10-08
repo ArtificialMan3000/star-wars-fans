@@ -15,6 +15,7 @@ const fetchSingleFilm = createAsyncThunk(
     async (filmId, { rejectWithValue }) => {
         try {
             const response = await fetch(`${API_URL}${API_FILMS}${filmId}`);
+            console.log(`${API_URL}${API_FILMS}${filmId}`);
             if (!response.ok) {
                 throw new Error('Ошибка запроса');
             }
@@ -30,7 +31,11 @@ const fetchSingleFilm = createAsyncThunk(
 const singleFilmSlice = createSlice({
     name: 'singleFilm',
     initialState,
-    reducers: {},
+    reducers: {
+        singleFilmUnmounted: (state) => {
+            state.status = 'idle';
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchSingleFilm.pending, (state) => {
@@ -57,4 +62,5 @@ export const selectSingleFilmData = (state) => [
 
 // Получаем и экспортируем reducer и action creator
 export const singleFilmReducer = singleFilmSlice.reducer;
+export const { singleFilmUnmounted } = singleFilmSlice.actions;
 export { fetchSingleFilm };

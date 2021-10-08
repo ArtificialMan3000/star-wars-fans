@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { fetchSingleFilm, selectSingleFilmData } from './singleFilmSlice';
+import {
+    fetchSingleFilm,
+    singleFilmUnmounted,
+    selectSingleFilmData,
+} from './singleFilmSlice';
 import { LoadingMessage } from '../messages/LoadingMessage';
 import { ErrorMessage } from '../messages/ErrorMessage';
 
@@ -12,6 +16,7 @@ export function SingleFilm() {
 
     // Получаем id фильма из адресной строки
     const { id: filmId } = useParams();
+    console.log('id', filmId);
 
     const dispatch = useDispatch();
     // Запрашиваем фильм
@@ -20,6 +25,11 @@ export function SingleFilm() {
             dispatch(fetchSingleFilm(filmId));
         }
     }, [fetchStatus, filmId, dispatch]);
+
+    // Сбрасываем состояние запроса при размонтировании компонента
+    useEffect(() => {
+        return dispatch(singleFilmUnmounted());
+    }, [dispatch]);
 
     // Компонент для рендера
     let renderedComponent;
