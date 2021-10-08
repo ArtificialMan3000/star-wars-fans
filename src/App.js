@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import IsLoggedHead from './features/header/IsLoggedHead';
 import NotLoggedHead from './features/header/NotLoggedHead';
 import Signin from './features/authorization/Signin';
@@ -14,26 +14,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { checkCurrUserThunk } from './features/authorization/authThunks';
 
 function App() {
-	const dispatch = useDispatch();
-	useEffect(() => dispatch(checkCurrUserThunk()), [dispatch]);
+    const dispatch = useDispatch();
+    useEffect(() => dispatch(checkCurrUserThunk()), [dispatch]);
 
-	const { userIsLogged, userName } = useSelector(state => state.auth.user);
-	console.log(userIsLogged, userName);
+    const { userIsLogged, userName } = useSelector((state) => state.auth.user);
+    console.log(userIsLogged, userName);
 
-	return (
-		<div className='container'>
-			{userIsLogged ? <IsLoggedHead userName={userName} /> : <NotLoggedHead />}
-			<Switch>
-				<AuthRoute exact path='/signin' component={Signin} />
-				<AuthRoute exact path='/signup' component={Signup} />
-				<ProtectedRoute exact path='/' component={MainPage} />
-				<ProtectedRoute exact path='/favorites' component={Favorites} />
-				<ProtectedRoute exact path='/history' component={History} />
-				<ProtectedRoute exact path='/404' component={NotFound} />
-				<Redirect to='/404' />
-			</Switch>
-		</div>
-	);
+    return (
+        <div className="container">
+            {userIsLogged ? (
+                <IsLoggedHead userName={userName} />
+            ) : (
+                <NotLoggedHead />
+            )}
+            <Switch>
+                <AuthRoute exact path="/signin" component={Signin} />
+                <AuthRoute exact path="/signup" component={Signup} />
+                <Route exact path="/" component={MainPage} />
+                <ProtectedRoute exact path="/favorites" component={Favorites} />
+                <ProtectedRoute exact path="/history" component={History} />
+                <ProtectedRoute exact path="/404" component={NotFound} />
+                <Redirect to="/404" />
+            </Switch>
+        </div>
+    );
 }
 
 export default App;

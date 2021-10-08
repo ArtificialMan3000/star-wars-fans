@@ -1,8 +1,8 @@
 import {
-	loading,
-	validationProgress,
-	logInUser,
-	logOutUser,
+    loading,
+    validationProgress,
+    logInUser,
+    logOutUser,
 } from './authSlice';
 
 /**
@@ -13,43 +13,43 @@ import {
  * @param {Function} setAuthLog Функция Callback (Сеттер) для сообщения компоненте статуса регистрации.
  */
 export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
-	return function (dispatch) {
-		dispatch(loading());
+    return function (dispatch) {
+        dispatch(loading());
 
-		if (!login.trim() || !pass || !confirmPass) {
-			const message = 'Данные не заполнены';
-			const code = 400;
-			const status = 'idle';
-			setAuthLog(message);
-			return dispatch(validationProgress({ message, code, status }));
-		}
+        if (!login.trim() || !pass || !confirmPass) {
+            const message = 'Данные не заполнены';
+            const code = 400;
+            const status = 'idle';
+            setAuthLog(message);
+            return dispatch(validationProgress({ message, code, status }));
+        }
 
-		if (localStorage.getItem(login)) {
-			const message = 'Логин занят';
-			const code = 400;
-			const status = 'idle';
-			setAuthLog(message);
-			return dispatch(validationProgress({ message, code, status }));
-		}
+        if (localStorage.getItem(login)) {
+            const message = 'Логин занят';
+            const code = 400;
+            const status = 'idle';
+            setAuthLog(message);
+            return dispatch(validationProgress({ message, code, status }));
+        }
 
-		if (pass !== confirmPass) {
-			const message = 'Пароли не совпадают';
-			const code = 400;
-			const status = 'idle';
-			setAuthLog(message);
-			return dispatch(validationProgress({ message, code, status }));
-		}
+        if (pass !== confirmPass) {
+            const message = 'Пароли не совпадают';
+            const code = 400;
+            const status = 'idle';
+            setAuthLog(message);
+            return dispatch(validationProgress({ message, code, status }));
+        }
 
-		localStorage.setItem(login, pass);
-		localStorage.setItem('currentUser', login);
+        localStorage.setItem(login, pass);
+        localStorage.setItem('currentUser', login);
 
-		const message = 'Пользователь создан';
-		const code = 201;
-		const status = 'idle';
-		setAuthLog(message);
-		dispatch(logInUser({ login }));
-		return dispatch(validationProgress({ message, code, status }));
-	};
+        const message = 'Пользователь создан';
+        const code = 201;
+        const status = 'idle';
+        setAuthLog(message);
+        dispatch(logInUser({ login }));
+        return dispatch(validationProgress({ message, code, status }));
+    };
 }
 
 /**
@@ -59,35 +59,35 @@ export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
  * @param {Function} setAuthLog Функция Callback (Сеттер) для сообщения компоненте статуса регистрации.
  */
 export function validateSignInThunk(login, pass, setAuthLog) {
-	return function (dispatch) {
-		dispatch(loading());
+    return function (dispatch) {
+        dispatch(loading());
 
-		if (!login.trim() || !pass) {
-			const message = 'Данные не заполнены';
-			const code = 400;
-			const status = 'idle';
-			setAuthLog(message);
-			return dispatch(validationProgress({ message, code, status }));
-		}
+        if (!login.trim() || !pass) {
+            const message = 'Данные не заполнены';
+            const code = 400;
+            const status = 'idle';
+            setAuthLog(message);
+            return dispatch(validationProgress({ message, code, status }));
+        }
 
-		const storageData = localStorage.getItem(login);
-		if (!storageData || storageData !== pass) {
-			const message = 'Некорректные данные';
-			const code = 400;
-			const status = 'idle';
-			setAuthLog(message);
-			return dispatch(validationProgress({ message, code, status }));
-		}
+        const storageData = localStorage.getItem(login);
+        if (!storageData || storageData !== pass) {
+            const message = 'Некорректные данные';
+            const code = 400;
+            const status = 'idle';
+            setAuthLog(message);
+            return dispatch(validationProgress({ message, code, status }));
+        }
 
-		localStorage.setItem('currentUser', login);
+        localStorage.setItem('currentUser', login);
 
-		const message = 'Пользователь авторизован';
-		const code = 200;
-		const status = 'idle';
-		setAuthLog(message);
-		dispatch(logInUser({ login }));
-		return dispatch(validationProgress({ message, code, status }));
-	};
+        const message = 'Пользователь авторизован';
+        const code = 200;
+        const status = 'idle';
+        setAuthLog(message);
+        dispatch(logInUser({ login }));
+        return dispatch(validationProgress({ message, code, status }));
+    };
 }
 
 /**
@@ -96,16 +96,16 @@ export function validateSignInThunk(login, pass, setAuthLog) {
  * Затем исключает данные пользователя из 'Store'.
  */
 export function logOutUserThunk() {
-	return function (dispatch) {
-		dispatch(loading());
-		localStorage.removeItem('currentUser');
+    return function (dispatch) {
+        dispatch(loading());
+        localStorage.removeItem('currentUser');
 
-		const message = 'Пользователь вышел';
-		const code = 204;
-		const status = 'idle';
-		dispatch(logOutUser());
-		dispatch(validationProgress({ message, code, status }));
-	};
+        const message = 'Пользователь вышел';
+        const code = 204;
+        const status = 'idle';
+        dispatch(logOutUser());
+        dispatch(validationProgress({ message, code, status }));
+    };
 }
 
 /**
@@ -116,21 +116,21 @@ export function logOutUserThunk() {
  * и Авторизует данного пользователя в 'Store'.
  */
 export function checkCurrUserThunk() {
-	return function (dispatch) {
-		dispatch(loading());
+    return function (dispatch) {
+        dispatch(loading());
 
-		const login = localStorage.getItem('currentUser');
-		if (login) {
-			const message = 'Пользователь авторизован';
-			const code = 200;
-			const status = 'idle';
-			dispatch(logInUser({ login }));
-			dispatch(validationProgress({ message, code, status }));
-		} else {
-			const message = 'Пользователь не авторизован';
-			const code = 204;
-			const status = 'idle';
-			dispatch(validationProgress({ message, code, status }));
-		}
-	};
+        const login = localStorage.getItem('currentUser');
+        if (login) {
+            const message = 'Пользователь авторизован';
+            const code = 200;
+            const status = 'idle';
+            dispatch(logInUser({ login }));
+            dispatch(validationProgress({ message, code, status }));
+        } else {
+            const message = 'Пользователь не авторизован';
+            const code = 204;
+            const status = 'idle';
+            dispatch(validationProgress({ message, code, status }));
+        }
+    };
 }
