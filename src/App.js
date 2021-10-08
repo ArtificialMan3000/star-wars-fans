@@ -25,10 +25,12 @@ function App() {
             <Switch>
                 <AuthRoute exact path="/signin" component={Signin} />
                 <AuthRoute exact path="/signup" component={Signup} />
+                <Route exact path="/films" component={FilmsList} />
+                <Route exact path="/film/:id" component={SingleFilm} />
                 <Route exact path="/" component={MainPage} />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />
                 <ProtectedRoute exact path="/history" component={History} />
-                <ProtectedRoute exact path="/404" component={NotFound} />
+                <Route exact path="/404" component={NotFound} />
                 <Redirect to="/404" />
             </Switch>
         </div>

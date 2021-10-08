@@ -16,6 +16,15 @@ export default function NotLoggedHead() {
                 <li>
                     <Link to="/signup">Регистрация</Link>
                 </li>
+                <li>
+                    <Link to="/films">Фильмы</Link>
+                </li>
+                <li>
+                    <Link to="/films">Персонажи</Link>
+                </li>
+                <li>
+                    <Link to="/films">Планеты</Link>
+                </li>
             </ul>
         </nav>
     );

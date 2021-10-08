@@ -23,6 +23,15 @@ export default function IsLoggedHead({ userName }) {
                 <li onClick={() => dispatch(logOutUserThunk())}>
                     <Link to="/signin">Выход</Link>
                 </li>
+                <li>
+                    <Link to="/films">Фильмы</Link>
+                </li>
+                <li>
+                    <Link to="/films">Персонажи</Link>
+                </li>
+                <li>
+                    <Link to="/films">Планеты</Link>
+                </li>
             </ul>
         </nav>
     );
