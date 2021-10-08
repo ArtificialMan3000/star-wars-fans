@@ -15,15 +15,6 @@ export default function IsLoggedHead({ userName }) {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/favorites">Избранное</Link>
-                </li>
-                <li>
-                    <Link to="/history">История</Link>
-                </li>
-                <li onClick={() => dispatch(logOutUserThunk())}>
-                    <Link to="/signin">Выход</Link>
-                </li>
-                <li>
                     <Link to="/films">Фильмы</Link>
                 </li>
                 <li>
@@ -31,6 +22,20 @@ export default function IsLoggedHead({ userName }) {
                 </li>
                 <li>
                     <Link to="/films">Планеты</Link>
+                </li>
+                <li>
+                    <Link to="/favorites">Избранное</Link>
+                </li>
+                <li>
+                    <Link to="/history">История</Link>
+                </li>
+                <li onClick={() => dispatch(logOutUserThunk())}>
+                    <Link
+                        to="/signin"
+                        style={{ marginLeft: '5rem', color: 'darkblue' }}
+                    >
+                        Выход
+                    </Link>
                 </li>
             </ul>
         </nav>

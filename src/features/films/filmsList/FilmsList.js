@@ -6,7 +6,7 @@ import { LoadingMessage } from '../messages/LoadingMessage';
 import { ErrorMessage } from '../messages/ErrorMessage';
 
 // Список фильмов
-export function FilmsList() {
+export default function FilmsList() {
     // Забираем данные о фильмах из стора
     const [films, fetchStatus, fetchError] = useSelector(selectFilmsData);
     const dispatch = useDispatch();
@@ -29,11 +29,13 @@ export function FilmsList() {
                 // В API номера сущностей совпадают с порядком в массиве
                 const filmId = index + 1;
                 return (
-                    <FilmListItem
-                        key={filmId}
-                        filmId={filmId}
-                        title={film.title}
-                    />
+                    <div className="body">
+                        <FilmListItem
+                            key={filmId}
+                            filmId={filmId}
+                            title={film.title}
+                        />
+                    </div>
                 );
             });
             renderedComponent = (
@@ -48,9 +50,9 @@ export function FilmsList() {
     }
 
     return (
-        <>
+        <div className="body">
             <h1>Список фильмов</h1>
             {renderedComponent}
-        </>
+        </div>
     );
 }

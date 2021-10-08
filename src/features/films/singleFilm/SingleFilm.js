@@ -10,7 +10,7 @@ import { LoadingMessage } from '../messages/LoadingMessage';
 import { ErrorMessage } from '../messages/ErrorMessage';
 
 // Карточка элемента
-export function SingleFilm() {
+export default function SingleFilm() {
     // Забираем данные о фильме из стора
     const [film, fetchStatus, fetchError] = useSelector(selectSingleFilmData);
 
@@ -52,5 +52,5 @@ export function SingleFilm() {
             renderedComponent = <LoadingMessage />;
     }
 
-    return renderedComponent;
+    return <div className="body">{renderedComponent}</div>;
 }

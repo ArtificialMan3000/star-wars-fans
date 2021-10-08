@@ -3,6 +3,8 @@ import IsLoggedHead from './features/header/IsLoggedHead';
 import NotLoggedHead from './features/header/NotLoggedHead';
 import Signin from './features/authorization/Signin';
 import Signup from './features/authorization/Signup';
+import FilmsList from './features/films/filmsList/FilmsList';
+import SingleFilm from './features/films/singleFilm/SingleFilm';
 import MainPage from './features/mainPage/MainPage';
 import Favorites from './features/favorites/Favorites';
 import History from './features/history/History';
@@ -25,8 +27,8 @@ function App() {
             <Switch>
                 <AuthRoute exact path="/signin" component={Signin} />
                 <AuthRoute exact path="/signup" component={Signup} />
-                <Route exact path="/films" component={FilmsList} />
-                <Route exact path="/film/:id" component={SingleFilm} />
+                <ProtectedRoute exact path="/films" component={FilmsList} />
+                <ProtectedRoute exact path="/film/:id" component={SingleFilm} />
                 <Route exact path="/" component={MainPage} />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />
                 <ProtectedRoute exact path="/history" component={History} />
