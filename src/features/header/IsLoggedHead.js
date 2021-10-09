@@ -15,25 +15,13 @@ export default function IsLoggedHead({ userName }) {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/films">Фильмы</Link>
-                </li>
-                <li>
-                    <Link to="/films">Персонажи</Link>
-                </li>
-                <li>
-                    <Link to="/films">Планеты</Link>
-                </li>
-                <li>
                     <Link to="/favorites">Избранное</Link>
                 </li>
                 <li>
                     <Link to="/history">История</Link>
                 </li>
                 <li onClick={() => dispatch(logOutUserThunk())}>
-                    <Link
-                        to="/signin"
-                        style={{ marginLeft: '5rem', color: 'darkblue' }}
-                    >
+                    <Link to="/signin" style={{ color: 'darkbrown' }}>
                         Выход
                     </Link>
                 </li>

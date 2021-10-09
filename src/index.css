@@ -46,6 +46,10 @@ a {
     font-weight: bold;
 }
 
+a:hover {
+    color: #3e4797e7;
+}
+
 a:active {
     color: #3576b3;
 }
