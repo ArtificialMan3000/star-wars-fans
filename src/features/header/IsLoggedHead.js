@@ -18,7 +18,7 @@ export default function IsLoggedHead({ userName }) {
                     <Link to="/films">Фильмы</Link>
                 </li>
                 <li>
-                    <Link to="/films">Персонажи</Link>
+                    <Link to="/persons">Персонажи</Link>
                 </li>
                 <li>
                     <Link to="/films">Планеты</Link>

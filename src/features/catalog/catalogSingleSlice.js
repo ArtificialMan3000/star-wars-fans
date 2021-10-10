@@ -12,7 +12,7 @@ const createCatalogSingleSlice = (name, thunk) => {
         name,
         initialState: { ...initialState },
         reducers: {
-            singleFilmUnmounted: (state) => {
+            [`${name}Unmounted`]: (state) => {
                 state.status = 'idle';
             },
         },

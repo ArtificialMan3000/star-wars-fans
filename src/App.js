@@ -5,6 +5,8 @@ import Signin from './features/authorization/Signin';
 import Signup from './features/authorization/Signup';
 import FilmsList from './features/catalog/films/filmsList/FilmsList';
 import SingleFilm from './features/catalog/films/singleFilm/SingleFilm';
+import PersonsList from './features/catalog/persons/personsList/PersonsList';
+import SinglePerson from './features/catalog/persons/singlePerson/SinglePerson';
 import MainPage from './features/mainPage/MainPage';
 import Favorites from './features/favorites/Favorites';
 import History from './features/history/History';
@@ -27,7 +29,17 @@ function App() {
                 <AuthRoute exact path="/signin" component={Signin} />
                 <AuthRoute exact path="/signup" component={Signup} />
                 <ProtectedRoute exact path="/films" component={FilmsList} />
-                <ProtectedRoute exact path="/film/:id" component={SingleFilm} />
+                <ProtectedRoute
+                    exact
+                    path="/films/:id"
+                    component={SingleFilm}
+                />
+                <ProtectedRoute exact path="/persons" component={PersonsList} />
+                <ProtectedRoute
+                    exact
+                    path="/persons/:id"
+                    component={SinglePerson}
+                />
                 <Route exact path="/" component={MainPage} />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />
                 <ProtectedRoute exact path="/history" component={History} />
