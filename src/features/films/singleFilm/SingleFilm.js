@@ -16,7 +16,6 @@ export default function SingleFilm() {
 
     // Получаем id фильма из адресной строки
     const { id: filmId } = useParams();
-    console.log('id', filmId);
 
     const dispatch = useDispatch();
     // Запрашиваем фильм

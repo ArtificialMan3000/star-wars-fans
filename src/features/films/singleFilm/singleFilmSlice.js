@@ -15,7 +15,6 @@ const fetchSingleFilm = createAsyncThunk(
     async (filmId, { rejectWithValue }) => {
         try {
             const response = await fetch(`${API_URL}${API_FILMS}${filmId}`);
-            console.log(`${API_URL}${API_FILMS}${filmId}`);
             if (!response.ok) {
                 throw new Error('Ошибка запроса');
             }

@@ -29,13 +29,11 @@ export default function FilmsList() {
                 // В API номера сущностей совпадают с порядком в массиве
                 const filmId = index + 1;
                 return (
-                    <div className="body">
-                        <FilmListItem
-                            key={filmId}
-                            filmId={filmId}
-                            title={film.title}
-                        />
-                    </div>
+                    <FilmListItem
+                        key={filmId}
+                        filmId={filmId}
+                        title={film.title}
+                    />
                 );
             });
             renderedComponent = (
