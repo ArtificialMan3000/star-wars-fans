@@ -2,33 +2,35 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import {
-    fetchSingleFilm,
-    singleFilmUnmounted,
-    selectSingleFilmData,
-} from './singleFilmSlice';
+    fetchSinglePlanet,
+    singlePlanetUnmounted,
+    selectSinglePlanetData,
+} from './singlePlanetSlice';
 import { LoadingMessage } from '../../messages/LoadingMessage';
 import { ErrorMessage } from '../../messages/ErrorMessage';
 
 // Карточка элемента
-export default function SingleFilm() {
+export default function SinglePlanet() {
     // Забираем данные о фильме из стора
-    const [film, fetchStatus, fetchError] = useSelector(selectSingleFilmData);
+    const [planet, fetchStatus, fetchError] = useSelector(
+        selectSinglePlanetData
+    );
 
     // Получаем id фильма из адресной строки
-    const { id: filmId } = useParams();
+    const { id: planetId } = useParams();
 
     const dispatch = useDispatch();
     // Запрашиваем фильм
     useEffect(() => {
         if (fetchStatus === 'idle') {
-            dispatch(fetchSingleFilm(filmId));
+            dispatch(fetchSinglePlanet(planetId));
         }
-    }, [fetchStatus, filmId, dispatch]);
+    }, [fetchStatus, planetId, dispatch]);
 
     // Сбрасываем состояние запроса при размонтировании компонента
     useEffect(() => {
         return () => {
-            dispatch(singleFilmUnmounted());
+            dispatch(singlePlanetUnmounted());
         };
     }, [dispatch]);
 
@@ -39,10 +41,22 @@ export default function SingleFilm() {
     switch (fetchStatus) {
         case 'fulfilled':
             renderedComponent = (
-                <div className="single-film">
-                    <h1>{film.title}</h1>
-                    <p className="episode-num">Episode {film.episode_id}</p>
-                    <div className="opening">{film.opening_crawl}</div>
+                <div className="single-planet">
+                    <h1>{planet.name}</h1>
+                    <dl className="planet-specifications">
+                        <dt className="specification-name">Climate</dt>
+                        <dd className="specification-value">
+                            {planet.climate}
+                        </dd>
+                        <dt className="specification-name">Diameter</dt>
+                        <dd className="specification-value">
+                            {planet.diameter}
+                        </dd>
+                        <dt className="specification-name">Terrain</dt>
+                        <dd className="specification-value">
+                            {planet.terrain}
+                        </dd>
+                    </dl>
                 </div>
             );
             break;

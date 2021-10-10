@@ -7,6 +7,8 @@ import FilmsList from './features/catalog/films/filmsList/FilmsList';
 import SingleFilm from './features/catalog/films/singleFilm/SingleFilm';
 import PersonsList from './features/catalog/persons/personsList/PersonsList';
 import SinglePerson from './features/catalog/persons/singlePerson/SinglePerson';
+import PlanetsList from './features/catalog/planets/planetsList/PlanetsList';
+import SinglePlanet from './features/catalog/planets/singlePlanet/SinglePlanet';
 import MainPage from './features/mainPage/MainPage';
 import Favorites from './features/favorites/Favorites';
 import History from './features/history/History';
@@ -39,6 +41,12 @@ function App() {
                     exact
                     path="/persons/:id"
                     component={SinglePerson}
+                />
+                <ProtectedRoute exact path="/planets" component={PlanetsList} />
+                <ProtectedRoute
+                    exact
+                    path="/planets/:id"
+                    component={SinglePlanet}
                 />
                 <Route exact path="/" component={MainPage} />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />

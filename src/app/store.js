@@ -4,6 +4,8 @@ import { filmsReducer } from '../features/catalog/films/filmsList/filmsSlice';
 import { singleFilmReducer } from '../features/catalog/films/singleFilm/singleFilmSlice';
 import { personsReducer } from '../features/catalog/persons/personsList/personsSlice';
 import { singlePersonReducer } from '../features/catalog/persons/singlePerson/singlePersonSlice';
+import { planetsReducer } from '../features/catalog/planets/planetsList/planetsSlice';
+import { singlePlanetReducer } from '../features/catalog/planets/singlePlanet/singlePlanetSlice';
 
 export default configureStore({
     reducer: {
@@ -12,5 +14,7 @@ export default configureStore({
         singleFilm: singleFilmReducer,
         persons: personsReducer,
         singlePerson: singlePersonReducer,
+        planets: planetsReducer,
+        singlePlanet: singlePlanetReducer,
     },
 });

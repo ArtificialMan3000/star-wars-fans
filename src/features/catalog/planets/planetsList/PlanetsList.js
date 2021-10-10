@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilmsData, fetchFilms } from './filmsSlice';
-import { FilmListItem } from './FilmListItem';
+import { selectPlanetsData, fetchPlanets } from './planetsSlice';
+import { PlanetListItem } from './PlanetsListItem';
 import { LoadingMessage } from '../../messages/LoadingMessage';
 import { ErrorMessage } from '../../messages/ErrorMessage';
 
 // Список фильмов
-export default function FilmsList() {
+export default function PlanetsList() {
     // Забираем данные о фильмах из стора
-    const [films, fetchStatus, fetchError] = useSelector(selectFilmsData);
+    const [planets, fetchStatus, fetchError] = useSelector(selectPlanetsData);
     const dispatch = useDispatch();
 
     // Запрашиваем фильмы
     useEffect(() => {
         if (fetchStatus === 'idle') {
-            dispatch(fetchFilms());
+            dispatch(fetchPlanets());
         }
     }, [fetchStatus, dispatch]);
 
@@ -25,19 +25,19 @@ export default function FilmsList() {
     switch (fetchStatus) {
         case 'fulfilled':
             // Генерируем выводы компонентов на основании списка фильмов
-            const filmListItems = films.map((film, index) => {
+            const planetListItems = planets.map((planet, index) => {
                 // В API номера сущностей совпадают с порядком в массиве
-                const filmId = index + 1;
+                const planetId = index + 1;
                 return (
-                    <FilmListItem
-                        key={filmId}
-                        filmId={filmId}
-                        title={film.title}
+                    <PlanetListItem
+                        key={planetId}
+                        planetId={planetId}
+                        name={planet.name}
                     />
                 );
             });
             renderedComponent = (
-                <div className="films-grid">{filmListItems}</div>
+                <div className="planets-grid">{planetListItems}</div>
             );
             break;
         case 'rejected':
@@ -49,7 +49,7 @@ export default function FilmsList() {
 
     return (
         <div className="body">
-            <h1>Список фильмов</h1>
+            <h1>Список планет</h1>
             {renderedComponent}
         </div>
     );
