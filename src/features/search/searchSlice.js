@@ -19,7 +19,6 @@ const searchSlice = createSlice({
             })
             .addCase(fetchSuggestions.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-                console.log(action.payload);
                 state.list = action.payload;
             })
             .addCase(fetchSuggestions.rejected, (state) => {

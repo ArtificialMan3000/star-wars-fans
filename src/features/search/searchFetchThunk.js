@@ -33,24 +33,26 @@ const doFetchFullData = async (url) => {
     return results;
 };
 
+const payloadCreator = async (searchStr) => {
+    if (!searchStr) {
+        return null;
+    }
+    let searchResults = [];
+    for (const url of urlsForSearch) {
+        let results;
+        try {
+            results = await doFetchFullData(`${url}?search=${searchStr}`);
+        } catch (error) {
+            console.log(error);
+        }
+        searchResults = [...searchResults, ...results];
+    }
+    return searchResults;
+};
+
 const fetchSuggestions = createAsyncThunk(
     'search/fetchSuggestions',
-    async (searchStr) => {
-        let searchResults = [];
-        for (const url of urlsForSearch) {
-            const results = await doFetchFullData(`${url}?search=${searchStr}`);
-            searchResults = [...searchResults, ...results];
-        }
-        console.log(searchResults);
-        return searchResults;
-        // urlsForSearch.forEach(async (url) => {
-        //     const response = await fetch(`${url}?search=${searchStr}`);
-        //     const data = await response.json();
-        //     searchResults = [...searchResults, data.results];
-        // });
-        // console.log(searchResults);
-        // return searchResults;
-    }
+    payloadCreator
 );
 
 export { fetchSuggestions };
