@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSuggestions } from './searchFetchThunk';
 import { SearchSuggestions } from './SearchSuggestions';
-import { useDebounce } from '../../auxiliary/customHooks';
+import { useDebounce } from '../../auxiliary/customHooks/useDebounce';
 
 const SearchForm = () => {
     const [value, setValue] = useState('');
