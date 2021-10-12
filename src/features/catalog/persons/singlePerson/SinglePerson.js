@@ -1,69 +1,42 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     fetchSinglePerson,
     singlePersonUnmounted,
     selectSinglePersonData,
 } from './singlePersonSlice';
-import { LoadingMessage } from '../../messages/LoadingMessage';
-import { ErrorMessage } from '../../messages/ErrorMessage';
+import { SingleCatalogItem } from '../../SingleCatalogItem';
 
 // Карточка элемента
-export default function SinglePerson() {
-    // Забираем данные о фильме из стора
-    const [person, fetchStatus, fetchError] = useSelector(
-        selectSinglePersonData
+const SinglePerson = () => {
+    // Забираем данные о персонаже из стора
+    const personData = useSelector(selectSinglePersonData);
+
+    // Генерирует описание персонажа
+    const renderDescription = (person) => {
+        return (
+            <dl className="person-specifications">
+                <dt className="specification-name">Birth year</dt>
+                <dd className="specification-value">{person.birth_year}</dd>
+                <dt className="specification-name">Height</dt>
+                <dd className="specification-value">{person.height}</dd>
+                <dt className="specification-name">Eye color</dt>
+                <dd className="specification-value">{person.eye_color}</dd>
+            </dl>
+        );
+    };
+
+    return (
+        <div className="body">
+            <SingleCatalogItem
+                type={'person'}
+                itemData={personData}
+                fetchSingleItem={fetchSinglePerson}
+                singleItemUnmounted={singlePersonUnmounted}
+                renderDescription={renderDescription}
+            />
+        </div>
     );
+};
 
-    // Получаем id фильма из адресной строки
-    const { id: personId } = useParams();
-
-    const dispatch = useDispatch();
-    // Запрашиваем фильм
-    useEffect(() => {
-        if (fetchStatus === 'idle') {
-            dispatch(fetchSinglePerson(personId));
-        }
-    }, [fetchStatus, personId, dispatch]);
-
-    // Сбрасываем состояние запроса при размонтировании компонента
-    useEffect(() => {
-        return () => {
-            dispatch(singlePersonUnmounted());
-        };
-    }, [dispatch]);
-
-    // Компонент для рендера
-    let renderedComponent;
-
-    // В зависимости от статуса запроса рендерим разные компоненты
-    switch (fetchStatus) {
-        case 'fulfilled':
-            renderedComponent = (
-                <div className="single-person">
-                    <h1>{person.name}</h1>
-                    <dl className="person-specifications">
-                        <dt className="specification-name">Birth year</dt>
-                        <dd className="specification-value">
-                            {person.birth_year}
-                        </dd>
-                        <dt className="specification-name">Height</dt>
-                        <dd className="specification-value">{person.height}</dd>
-                        <dt className="specification-name">Eye color</dt>
-                        <dd className="specification-value">
-                            {person.eye_color}
-                        </dd>
-                    </dl>
-                </div>
-            );
-            break;
-        case 'rejected':
-            renderedComponent = <ErrorMessage error={fetchError} />;
-            break;
-        default:
-            renderedComponent = <LoadingMessage />;
-    }
-
-    return <div className="body">{renderedComponent}</div>;
-}
+export { SinglePerson };
