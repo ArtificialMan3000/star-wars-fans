@@ -4,7 +4,9 @@ const SearchSuggestions = (props) => {
     const suggestionsElems = props.suggestions.map((suggestion) => {
         return (
             <li key={suggestion.url}>
-                <a href="#">{suggestion.title || suggestion.name}</a>
+                <a href={`/${suggestion.type}/${suggestion.id}`}>
+                    {suggestion.title || suggestion.name}
+                </a>
             </li>
         );
     });
