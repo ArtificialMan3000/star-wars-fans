@@ -29,7 +29,7 @@ const SinglePerson = () => {
     return (
         <div className="body">
             <SingleCatalogItem
-                type={'person'}
+                type={'people'}
                 itemData={personData}
                 fetchSingleItem={fetchSinglePerson}
                 singleItemUnmounted={singlePersonUnmounted}

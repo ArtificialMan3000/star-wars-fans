@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { LoadingMessage } from './messages/LoadingMessage';
 import { ErrorMessage } from './messages/ErrorMessage';
-import { FavoriteButton } from './FavoriteButton';
+import {
+    addToFavoritesThunk,
+    removeFromFavoritesThunk,
+} from '../favorites/favoritesThunks';
 
 // Карточка элемента каталога
 function SingleCatalogItem(props) {
@@ -14,6 +17,7 @@ function SingleCatalogItem(props) {
         singleItemUnmounted,
         renderDescription,
     } = props;
+
     // Забираем данные об элементе из стора
     const [catalogItem, fetchStatus, fetchError] = itemData;
 
@@ -35,11 +39,23 @@ function SingleCatalogItem(props) {
         };
     }, [dispatch, singleItemUnmounted]);
 
-    // Обработчик нажатия кнопки избранного
-    const buttonClickHandler = () => {
-        // Диспатчим нажатие кнопки, передаём тип элемента и id
-        // dispatch(addToFavorites(type, itemId));
+    ///////////////////////////////////////////////////////////////////////
+    /*   Функционал для работы с добавлением и удалением из Избранного   */
+    ///////////////////////////////////////////////////////////////////////
+    const login = useSelector((state) => state.auth.user.userName);
+    const favorites = useSelector((state) => state.auth.favorites)[type];
+    const index = favorites.findIndex((el) => el === `${itemId}`);
+    const isInFavorite = index === -1 ? false : true;
+
+    /*                         Buttons On Click Handlers                 */
+    const addToFavoritesHandler = () => {
+        dispatch(addToFavoritesThunk(login, type, itemId));
     };
+
+    const removeFromFavoritesHandler = () => {
+        dispatch(removeFromFavoritesThunk(login, type, index));
+    };
+    ///////////////////////////////////////////////////////////////////////
 
     // Компонент для рендера
     let renderedComponent;
@@ -51,11 +67,16 @@ function SingleCatalogItem(props) {
                 <div className={`single-${type}`}>
                     <h1>{catalogItem.title || catalogItem.name}</h1>
                     {renderDescription(catalogItem)}
-                    <FavoriteButton
-                        disabled={false}
-                        onClick={buttonClickHandler}
-                        type="button"
-                    />
+                    {!isInFavorite && (
+                        <button onClick={addToFavoritesHandler}>
+                            Добавить в избранное
+                        </button>
+                    )}
+                    {isInFavorite && (
+                        <button onClick={removeFromFavoritesHandler}>
+                            Удалить из избранного
+                        </button>
+                    )}
                 </div>
             );
             break;

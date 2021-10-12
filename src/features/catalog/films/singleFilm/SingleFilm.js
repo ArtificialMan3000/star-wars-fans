@@ -25,7 +25,7 @@ const SingleFilm = () => {
     return (
         <div className="body">
             <SingleCatalogItem
-                type={'film'}
+                type={'films'}
                 itemData={filmData}
                 fetchSingleItem={fetchSingleFilm}
                 singleItemUnmounted={singleFilmUnmounted}

@@ -3,7 +3,9 @@ import {
     validationProgress,
     logInUser,
     logOutUser,
+    clearFavoritesState,
 } from './authSlice';
+import { setFavoritesStateThunk } from '../favorites/favoritesThunks';
 
 /**
  * Валидация Регистрации пользователя:
@@ -28,27 +30,37 @@ export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
             const message = 'Логин занят';
             const code = 400;
             const status = 'idle';
-            setAuthLog(message);
-            return dispatch(validationProgress({ message, code, status }));
+            dispatch(validationProgress({ message, code, status }));
+            return setAuthLog(message);
         }
 
         if (pass !== confirmPass) {
             const message = 'Пароли не совпадают';
             const code = 400;
             const status = 'idle';
-            setAuthLog(message);
-            return dispatch(validationProgress({ message, code, status }));
+            dispatch(validationProgress({ message, code, status }));
+            return setAuthLog(message);
         }
 
-        localStorage.setItem(login, pass);
+        const user = {
+            pass,
+            favorites: {
+                films: [],
+                people: [],
+                planets: [],
+            },
+            history: [],
+        };
+
+        localStorage.setItem(login, JSON.stringify(user));
         localStorage.setItem('currentUser', login);
 
         const message = 'Пользователь создан';
         const code = 201;
         const status = 'idle';
-        setAuthLog(message);
         dispatch(logInUser({ login }));
-        return dispatch(validationProgress({ message, code, status }));
+        dispatch(validationProgress({ message, code, status }));
+        setAuthLog(message);
     };
 }
 
@@ -66,44 +78,53 @@ export function validateSignInThunk(login, pass, setAuthLog) {
             const message = 'Данные не заполнены';
             const code = 400;
             const status = 'idle';
-            setAuthLog(message);
-            return dispatch(validationProgress({ message, code, status }));
+            dispatch(validationProgress({ message, code, status }));
+            return setAuthLog(message);
         }
 
-        const storageData = localStorage.getItem(login);
-        if (!storageData || storageData !== pass) {
+        let storageData = localStorage.getItem(login);
+        if (storageData) {
+            storageData = JSON.parse(storageData);
+        }
+
+        if (!storageData || storageData.pass !== pass) {
             const message = 'Некорректные данные';
             const code = 400;
             const status = 'idle';
-            setAuthLog(message);
-            return dispatch(validationProgress({ message, code, status }));
+            dispatch(validationProgress({ message, code, status }));
+            return setAuthLog(message);
         }
 
         localStorage.setItem('currentUser', login);
 
+        dispatch(setFavoritesStateThunk(storageData.favorites));
+
         const message = 'Пользователь авторизован';
         const code = 200;
         const status = 'idle';
-        setAuthLog(message);
         dispatch(logInUser({ login }));
-        return dispatch(validationProgress({ message, code, status }));
+        dispatch(validationProgress({ message, code, status }));
+        setAuthLog(message);
     };
 }
 
 /**
  * Функция (thunk) удаляет из localstorage пару 'currUser' - 'login'.
  *
- * Затем исключает данные пользователя из 'Store'.
+ * Очищает Добавленные пользователем в Избранное элементы из State.
+ *
+ * Затем удаляет данные о пользователе из 'Store'.
  */
 export function logOutUserThunk() {
     return function (dispatch) {
         dispatch(loading());
         localStorage.removeItem('currentUser');
 
-        const message = 'Пользователь вышел';
+        const message = 'Пользователь не авторизован';
         const code = 204;
         const status = 'idle';
         dispatch(logOutUser());
+        dispatch(clearFavoritesState());
         dispatch(validationProgress({ message, code, status }));
     };
 }
@@ -113,6 +134,9 @@ export function logOutUserThunk() {
  *
  * @return {Object} Если ключ currUser есть в localstorage,
  * возвращает состояние по умолчанию с Авторизованным пользователем в reducer Аутентификации.
+ *
+ * Также подтягивает из Local Storage все добавленные пользователем в Избранное, запросы.
+ *
  * @return {Object} Если ключа currUser нет в localstorage,
  * возвращает состояние по умолчанию без пользователя в reducer Аутентификации.
  */
@@ -120,6 +144,8 @@ export function isCurrUserLoged() {
     const login = localStorage.getItem('currentUser');
 
     if (login) {
+        let userObj = localStorage.getItem(login);
+        userObj = JSON.parse(userObj);
         return {
             user: {
                 userIsLogged: true,
@@ -130,6 +156,8 @@ export function isCurrUserLoged() {
                 message: 'Пользователь авторизован',
                 code: 200,
             },
+            favorites: userObj.favorites,
+            history: userObj.history,
         };
     } else {
         return {
@@ -142,6 +170,12 @@ export function isCurrUserLoged() {
                 message: 'Пользователь не авторизован',
                 code: 204,
             },
+            favorites: {
+                films: [],
+                people: [],
+                planets: [],
+            },
+            history: [],
         };
     }
 }

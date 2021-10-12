@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormInput } from '../../auxiliary/customHooks';
+import { useFormInput } from '../../auxiliary/customHooks/useFormInput';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { validateSignUpThunk } from './authThunks';

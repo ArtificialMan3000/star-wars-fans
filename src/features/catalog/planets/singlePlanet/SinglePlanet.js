@@ -29,7 +29,7 @@ const SinglePlanet = () => {
     return (
         <div className="body">
             <SingleCatalogItem
-                type={'person'}
+                type={'planets'}
                 itemData={planetData}
                 fetchSingleItem={fetchSinglePlanet}
                 singleItemUnmounted={singlePlanetUnmounted}
