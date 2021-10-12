@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { LoadingMessage } from './messages/LoadingMessage';
 import { ErrorMessage } from './messages/ErrorMessage';
+import { FavoriteButton } from './FavoriteButton';
 
 // Карточка элемента каталога
 export default function SingleCatalogItem(props) {
@@ -34,6 +35,12 @@ export default function SingleCatalogItem(props) {
         };
     }, [dispatch, singleItemUnmounted]);
 
+    // Обработчик нажатия кнопки избранного
+    const buttonClickHandler = () => {
+        // Диспатчим нажатие кнопки, передаём тип элемента и id
+        // dispatch(addToFavorites(type, itemId));
+    };
+
     // Компонент для рендера
     let renderedComponent;
 
@@ -44,9 +51,11 @@ export default function SingleCatalogItem(props) {
                 <div className={`single-${type}`}>
                     <h1>{catalogItem.title || catalogItem.name}</h1>
                     {renderDescription(catalogItem)}
-                    <button disabled={true} type="button">
-                        Добавить в избранное
-                    </button>
+                    <FavoriteButton
+                        disabled={false}
+                        onClick={buttonClickHandler}
+                        type="button"
+                    />
                 </div>
             );
             break;
