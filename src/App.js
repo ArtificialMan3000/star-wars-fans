@@ -36,10 +36,10 @@ function App() {
                     path="/films/:id"
                     component={SingleFilm}
                 />
-                <ProtectedRoute exact path="/persons" component={PersonsList} />
+                <ProtectedRoute exact path="/people" component={PersonsList} />
                 <ProtectedRoute
                     exact
-                    path="/persons/:id"
+                    path="/people/:id"
                     component={SinglePerson}
                 />
                 <ProtectedRoute exact path="/planets" component={PlanetsList} />
