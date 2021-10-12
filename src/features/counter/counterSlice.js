@@ -56,4 +56,4 @@ export function incrementIfOdd(amount) {
 }
 
 export const { decrement, increment, incrementByAmount } = counterSlice.actions;
-export default counterSlice.reducer;
+export const counterReducer = counterSlice.reducer;

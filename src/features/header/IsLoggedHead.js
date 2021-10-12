@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logOutUserThunk } from '../authorization/authThunks';
 
-export default function IsLoggedHead({ userName }) {
+export function IsLoggedHead({ userName }) {
     const dispatch = useDispatch();
 
     return (

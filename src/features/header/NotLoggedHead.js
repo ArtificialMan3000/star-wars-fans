@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function NotLoggedHead() {
+export function NotLoggedHead() {
     return (
         <nav className="header">
             <ul>

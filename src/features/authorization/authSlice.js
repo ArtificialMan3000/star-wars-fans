@@ -32,4 +32,4 @@ export function selectAuth(state) {
 
 export const { loading, validationProgress, logInUser, logOutUser } =
     authSlice.actions;
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

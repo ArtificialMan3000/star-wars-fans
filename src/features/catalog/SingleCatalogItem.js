@@ -6,7 +6,7 @@ import { ErrorMessage } from './messages/ErrorMessage';
 import { FavoriteButton } from './FavoriteButton';
 
 // Карточка элемента каталога
-export default function SingleCatalogItem(props) {
+function SingleCatalogItem(props) {
     const {
         type,
         itemData,

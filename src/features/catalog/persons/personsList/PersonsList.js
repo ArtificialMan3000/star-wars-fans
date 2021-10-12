@@ -6,7 +6,7 @@ import { LoadingMessage } from '../../messages/LoadingMessage';
 import { ErrorMessage } from '../../messages/ErrorMessage';
 
 // Список фильмов
-export default function PersonsList() {
+export function PersonsList() {
     // Забираем данные о фильмах из стора
     const [persons, fetchStatus, fetchError] = useSelector(selectPersonsData);
     const dispatch = useDispatch();

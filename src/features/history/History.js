@@ -1,3 +1,3 @@
-export default function History() {
-	return <div className='body'>История</div>;
+export function History() {
+    return <div className="body">История</div>;
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { validateSignUpThunk } from './authThunks';
 import { auth, form, control, actions } from './Auth.module.css';
 
-export default function Signup() {
+export function Signup() {
     const [login, onLoginChange, loginReset] = useFormInput('');
     const [pass, onPassChange, passReset] = useFormInput('');
     const [confirmPass, onConfirmPassChange, confirmPassReset] =
