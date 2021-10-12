@@ -28,6 +28,7 @@ function App() {
                 <NotLoggedHead />
             )}
             <Switch>
+                <Route exact path="/" component={MainPage} />
                 <AuthRoute exact path="/signin" component={Signin} />
                 <AuthRoute exact path="/signup" component={Signup} />
                 <ProtectedRoute exact path="/films" component={FilmsList} />
@@ -48,7 +49,6 @@ function App() {
                     path="/planets/:id"
                     component={SinglePlanet}
                 />
-                <Route exact path="/" component={MainPage} />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />
                 <ProtectedRoute exact path="/history" component={History} />
                 <Route exact path="/404" component={NotFound} />

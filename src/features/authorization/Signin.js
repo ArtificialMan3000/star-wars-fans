@@ -55,8 +55,19 @@ export default function Signin() {
                     </div>
                 </form>
             </div>
-            <p style={{ textAlign: 'center' }}>
-                <Link to="signup">Нужен аккаунт? Создать.</Link>
+            <p
+                style={{
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                }}
+            >
+                Нужен аккаунт?
+                <Link
+                    to="signup"
+                    style={{ color: 'darkblue', fontWeight: 'bold' }}
+                >
+                    &nbsp;&nbsp;Создать
+                </Link>
             </p>
         </div>
     );
