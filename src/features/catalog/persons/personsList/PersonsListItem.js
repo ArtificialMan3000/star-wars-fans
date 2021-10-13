@@ -6,7 +6,7 @@ export function PersonListItem(props) {
     return (
         <div className="person-item">
             <h3>{props.name}</h3>
-            <Link to={`/persons/${props.personId}`}>Подробнее</Link>
+            <Link to={`/people/${props.personId}`}>Подробнее</Link>
         </div>
     );
 }

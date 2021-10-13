@@ -18,7 +18,7 @@ export function IsLoggedHead({ userName }) {
                     <Link to="/films">Фильмы</Link>
                 </li>
                 <li>
-                    <Link to="/persons">Персонажи</Link>
+                    <Link to="/people">Персонажи</Link>
                 </li>
                 <li>
                     <Link to="/planets">Планеты</Link>

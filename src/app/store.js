@@ -6,6 +6,7 @@ import { personsReducer } from '../features/catalog/persons/personsList/personsS
 import { singlePersonReducer } from '../features/catalog/persons/singlePerson/singlePersonSlice';
 import { planetsReducer } from '../features/catalog/planets/planetsList/planetsSlice';
 import { singlePlanetReducer } from '../features/catalog/planets/singlePlanet/singlePlanetSlice';
+import { searchReducer } from '../features/search/searchSlice';
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         singlePerson: singlePersonReducer,
         planets: planetsReducer,
         singlePlanet: singlePlanetReducer,
+        search: searchReducer,
     },
 });
