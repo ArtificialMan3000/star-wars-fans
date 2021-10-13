@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_URL, API_FILMS, API_PEOPLE, API_PLANETS } from '../../apiConfig';
 import { doFetchFullResults } from '../../auxiliary/apiHelpers';
 
-const urlsForSearch = [
-    `${API_URL}${API_FILMS}`,
-    `${API_URL}${API_PEOPLE}`,
-    `${API_URL}${API_PLANETS}`,
+const entriesForSearch = [
+    { type: 'films', url: `${API_URL}${API_FILMS}` },
+    { type: 'people', url: `${API_URL}${API_PEOPLE}` },
+    { type: 'planets', url: `${API_URL}${API_PLANETS}` },
 ];
 
 const payloadCreator = async (searchStr, { rejectedWithValue }) => {
@@ -13,14 +13,21 @@ const payloadCreator = async (searchStr, { rejectedWithValue }) => {
         return null;
     }
     let searchResults = [];
-    for (const url of urlsForSearch) {
+    for (const entry of entriesForSearch) {
         let results;
         try {
-            results = await doFetchFullResults(`${url}?search=${searchStr}`);
+            results = await doFetchFullResults(
+                `${entry.url}?search=${searchStr}`
+            );
         } catch (error) {
             rejectedWithValue(error);
         }
-        searchResults = [...searchResults, ...results];
+        if (results.length > 0) {
+            searchResults = [
+                ...searchResults,
+                { type: entry.type, results: results },
+            ];
+        }
     }
     return searchResults;
 };
