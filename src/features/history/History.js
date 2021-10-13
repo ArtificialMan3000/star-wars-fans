@@ -29,5 +29,9 @@ export function History() {
     //
     ///////////////////////////////////////////////////////////////////////////////
 
-    return <div className="body">История</div>;
+    return (
+        <div className="body">
+            <h3>История</h3>
+        </div>
+    );
 }

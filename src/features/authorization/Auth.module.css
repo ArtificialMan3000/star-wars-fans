@@ -39,16 +39,23 @@
 
 .control input {
     display: block;
-    font: inherit;
+    /* font: inherit; */
     border-radius: 5px;
     border: 1px solid #00158d;
     padding: 0.25rem;
     width: 100%;
+    border: 1px solid #3461dd;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: large;
+    color: #020944e7;
 }
 
 .control input:focus {
     color: #020944e7;
-    outline-color: #343e99;
+    outline: none !important;
+    border: 1px solid #3461dd;
+    box-shadow: 0 0 10px #719ece;
 }
 
 .actions {

@@ -30,9 +30,16 @@ const Search = () => {
     }, [fetchStatus, searchValue, dispatch]);
 
     return (
-        <div className={`body`}>
-            <SearchForm initialValue={initialValue || ''} />
-            {results && <SearchResults results={results} />}
+        <div className="search-container">
+            <div className="main-head">
+                <h2>Главная Страница:</h2>
+            </div>
+            <div className="search-header">
+                <SearchForm initialValue={initialValue || ''} />
+            </div>
+            <div className="search-body">
+                {results && <SearchResults results={results} />}
+            </div>
         </div>
     );
 };
