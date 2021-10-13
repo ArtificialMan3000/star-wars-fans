@@ -1,74 +1,75 @@
 .auth {
-	border: 0.5px solid #757dca;
-	border-radius: 5px;
-	padding: 1rem;
+    border: 0.5px solid #757dca;
+    border-radius: 5px;
+    padding: 1rem;
 }
 
 .auth h2 {
-	text-align: center;
+    text-align: center;
 }
 
 .auth p {
-	color: #020944e7;
-	font-weight: bold;
-	text-align: center;
-	border-radius: 5px;
-	background-color: pink;
-	width: 18.2rem;
-	height: 1.8rem;
-	margin: auto;
-	padding: 0.35rem;
+    color: #020944e7;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    background-color: pink;
+    width: 18.2rem;
+    height: 1.8rem;
+    margin: auto;
+    padding: 0.35rem;
 }
 
 .form {
-	padding: 1rem;
-	width: 20rem;
+    padding: 1rem;
+    width: 20rem;
 }
 
 .control {
-	margin-bottom: 1.3rem;
+    margin-bottom: 1.3rem;
 }
 
 .control label {
-	display: block;
-	font-weight: bold;
-	font-size: 1.2rem;
-	margin-bottom: 0.5rem;
-	color: #020944e7;
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #020944e7;
 }
 
 .control input {
-	display: block;
-	font: inherit;
-	border-radius: 5px;
-	border: 1px solid #00158d;
-	padding: 0.25rem;
-	width: 100%;
+    display: block;
+    font: inherit;
+    border-radius: 5px;
+    border: 1px solid #00158d;
+    padding: 0.25rem;
+    width: 100%;
 }
 
 .control input:focus {
-	color: #020944e7;
-	outline-color: #343e99;
+    color: #020944e7;
+    outline-color: #343e99;
 }
 
 .actions {
-	margin-top: 1rem;
-	text-align: right;
+    margin-top: 1rem;
+    text-align: right;
 }
 
 .actions button {
-	font: inherit;
-	cursor: pointer;
-	background-color: #000c77e7;
-	color: white;
-	padding: 0.5rem 1.5rem;
-	border: 1px solid #000c77e7;
-	border-radius: 4px;
-	font-weight: bold;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    background-color: #000c77e7;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #000c77e7;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
 .actions button:hover,
 .actions button:active {
-	background-color: #343e99;
-	border-color: #343e99;
+    background-color: #343e99;
+    border-color: #343e99;
 }
