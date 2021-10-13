@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 //eslint-disable-next-line
 import { removeFromHistoryThunk } from './historyThunks';
+import style from './history.module.css';
+import { HistoryColumn } from './HistoryColumn';
 
 export function History() {
     //eslint-disable-next-line
@@ -29,5 +31,24 @@ export function History() {
     //
     ///////////////////////////////////////////////////////////////////////////////
 
-    return <div className="body">История</div>;
+    return (
+        <div className="body">
+            <h1>История поиска</h1>
+            <div className={style.history}>
+                {films.length > 0 && (
+                    <HistoryColumn key="films" list={films} type="films" />
+                )}
+                {people.length > 0 && (
+                    <HistoryColumn key="people" list={people} type="people" />
+                )}
+                {planets.length > 0 && (
+                    <HistoryColumn
+                        key="planets"
+                        list={planets}
+                        type="planets"
+                    />
+                )}
+            </div>
+        </div>
+    );
 }

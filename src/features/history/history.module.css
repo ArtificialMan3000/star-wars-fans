@@ -1,9 +1,9 @@
-.results {
+.history {
     display: flex;
     gap: 20px;
 }
 
-.resultsList {
+.historyList {
     margin: 0;
     padding: 0;
     list-style-type: none;

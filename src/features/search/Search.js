@@ -9,11 +9,13 @@ import {
 } from './searchSlice';
 import { SearchForm } from './SearchForm';
 import { SearchResults } from './SearchResults';
+import { addToHistoryThunk } from '../history/historyThunks';
 
 const Search = () => {
     const [initialValue] = useSearchParams(['search']);
     const [results, fetchStatus] = useSelector(searchSelector);
     const searchValue = useSelector(searchValueSelector);
+    const login = useSelector((state) => state.auth.user.userName);
 
     const dispatch = useDispatch();
 
@@ -29,10 +31,20 @@ const Search = () => {
         }
     }, [fetchStatus, searchValue, dispatch]);
 
+    // При клике на ссылку результата добавляем её в историю
+    const resultLinkClickHandler = (type, url) => {
+        dispatch(addToHistoryThunk(login, type, url));
+    };
+
     return (
-        <div className={`body`}>
+        <div className="body">
             <SearchForm initialValue={initialValue || ''} />
-            {results && <SearchResults results={results} />}
+            {results && (
+                <SearchResults
+                    results={results}
+                    resultLinkClickHandler={resultLinkClickHandler}
+                />
+            )}
         </div>
     );
 };
