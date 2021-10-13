@@ -17,8 +17,6 @@ export function addToFavoritesThunk(login, type, itemId) {
     return function (dispatch) {
         dispatch(loading());
 
-        console.log(itemId);
-
         let data = localStorage.getItem(login);
         data = JSON.parse(data);
 

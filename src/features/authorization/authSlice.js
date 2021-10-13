@@ -29,18 +29,28 @@ const authSlice = createSlice({
         addToFavorites(state, action) {
             state.favorites[action.payload.type].push(...action.payload.id);
         },
+        addToHistory(state, action) {
+            state.history[action.payload.type].push(...action.payload.query);
+        },
         removeFromFavorites(state, action) {
             state.favorites[action.payload.type].splice(
                 action.payload.index,
                 1
             );
         },
+        removeFromHistory(state, action) {
+            state.history[action.payload.type].splice(action.payload.index, 1);
+        },
         clearFavoritesState(state) {
             state.favorites.films = [];
             state.favorites.people = [];
             state.favorites.planets = [];
         },
-        addToHistory(state, action) {},
+        clearHistoryState(state) {
+            state.history.films = [];
+            state.history.people = [];
+            state.history.planets = [];
+        },
     },
 });
 
@@ -57,5 +67,8 @@ export const {
     addToFavorites,
     removeFromFavorites,
     clearFavoritesState,
+    addToHistory,
+    removeFromHistory,
+    clearHistoryState,
 } = authSlice.actions;
 export const authReducer = authSlice.reducer;

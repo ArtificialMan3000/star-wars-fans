@@ -4,8 +4,10 @@ import {
     logInUser,
     logOutUser,
     clearFavoritesState,
+    clearHistoryState,
 } from './authSlice';
 import { setFavoritesStateThunk } from '../favorites/favoritesThunks';
+import { setHistoryStateThunk } from '../history/historyThunks';
 
 /**
  * Валидация Регистрации пользователя:
@@ -49,7 +51,11 @@ export function validateSignUpThunk(login, pass, confirmPass, setAuthLog) {
                 people: [],
                 planets: [],
             },
-            history: [],
+            history: {
+                films: [],
+                people: [],
+                planets: [],
+            },
         };
 
         localStorage.setItem(login, JSON.stringify(user));
@@ -99,6 +105,8 @@ export function validateSignInThunk(login, pass, setAuthLog) {
 
         dispatch(setFavoritesStateThunk(storageData.favorites));
 
+        dispatch(setHistoryStateThunk(storageData.history));
+
         const message = 'Пользователь авторизован';
         const code = 200;
         const status = 'idle';
@@ -124,7 +132,11 @@ export function logOutUserThunk() {
         const code = 204;
         const status = 'idle';
         dispatch(logOutUser());
+
         dispatch(clearFavoritesState());
+
+        dispatch(clearHistoryState());
+
         dispatch(validationProgress({ message, code, status }));
     };
 }
@@ -135,8 +147,8 @@ export function logOutUserThunk() {
  * @return {Object} Если ключ currUser есть в localstorage,
  * возвращает состояние по умолчанию с Авторизованным пользователем в reducer Аутентификации.
  *
- * Также подтягивает из Local Storage все добавленные пользователем в Избранное, запросы.
- *
+ * Также подтягивает из Local Storage все добавленные пользователем в Избранное карточки,
+ * и Историю поиска.
  * @return {Object} Если ключа currUser нет в localstorage,
  * возвращает состояние по умолчанию без пользователя в reducer Аутентификации.
  */
@@ -175,7 +187,11 @@ export function isCurrUserLoged() {
                 people: [],
                 planets: [],
             },
-            history: [],
+            history: {
+                films: [],
+                people: [],
+                planets: [],
+            },
         };
     }
 }
