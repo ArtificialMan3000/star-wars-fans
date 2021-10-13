@@ -5,6 +5,7 @@ const API_PLANETS = 'planets/';
 const API_SPECIES = 'species/';
 const API_STARSHIPS = 'starships/';
 const API_VEHICLES = 'vehicles/';
+const DEBOUNCE_DELAY = 700;
 
 export {
     API_URL,
@@ -14,4 +15,5 @@ export {
     API_SPECIES,
     API_STARSHIPS,
     API_VEHICLES,
+    DEBOUNCE_DELAY,
 };

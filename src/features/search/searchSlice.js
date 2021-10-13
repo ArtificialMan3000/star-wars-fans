@@ -1,30 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSuggestions } from './searchFetchThunk';
+import { fetchSearchResults } from './searchFetchThunk';
 
 const initialState = {
-    list: [],
+    value: '',
+    results: [],
     status: 'idle',
     error: null,
+    history: [],
 };
 
 const searchSlice = createSlice({
     name: 'search',
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchValue: (state, action) => {
+            state.value = action.payload;
+        },
+        resetSearchStatus: (state) => {
+            state.status = 'idle';
+        },
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchSuggestions.pending, (state) => {
+            .addCase(fetchSearchResults.pending, (state) => {
                 state.status = 'pending';
                 state.error = 'null';
             })
-            .addCase(fetchSuggestions.fulfilled, (state, action) => {
+            .addCase(fetchSearchResults.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-                state.list = action.payload;
+                state.results = action.payload || [];
             })
-            .addCase(fetchSuggestions.rejected, (state) => {
+            .addCase(fetchSearchResults.rejected, (state, action) => {
                 state.status = 'rejected';
+                state.error = action.payload;
             });
     },
 });
 
+// Получает данные о результатах поиска
+const searchSelector = (state) => [
+    state.search.results,
+    state.search.status,
+    state.search.error,
+];
+
+const searchValueSelector = (state) => state.search.value;
+
 export const searchReducer = searchSlice.reducer;
+export const { setSearchValue, resetSearchStatus } = searchSlice.actions;
+export { searchSelector, searchValueSelector };

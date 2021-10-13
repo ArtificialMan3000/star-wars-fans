@@ -1,10 +1,10 @@
-import { SearchForm } from '../search/SearchForm';
+import { Search } from '../search/Search';
 
 export default function MainPage() {
     return (
         <div className="body">
             Главная Страница
-            <SearchForm />
+            <Search />
         </div>
     );
 }

@@ -8,7 +8,7 @@ const urlsForSearch = [
     `${API_URL}${API_PLANETS}`,
 ];
 
-const payloadCreator = async (searchStr) => {
+const payloadCreator = async (searchStr, { rejectedWithValue }) => {
     if (!searchStr) {
         return null;
     }
@@ -18,16 +18,16 @@ const payloadCreator = async (searchStr) => {
         try {
             results = await doFetchFullResults(`${url}?search=${searchStr}`);
         } catch (error) {
-            console.log(error);
+            rejectedWithValue(error);
         }
         searchResults = [...searchResults, ...results];
     }
     return searchResults;
 };
 
-const fetchSuggestions = createAsyncThunk(
-    'search/fetchSuggestions',
+const fetchSearchResults = createAsyncThunk(
+    'search/fetchResults',
     payloadCreator
 );
 
-export { fetchSuggestions };
+export { fetchSearchResults };

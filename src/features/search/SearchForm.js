@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSuggestions } from './searchFetchThunk';
-import { SearchSuggestions } from './SearchSuggestions';
+import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router';
+import { DEBOUNCE_DELAY } from '../../apiConfig';
 import { useDebounce } from '../../auxiliary/customHooks/useDebounce';
+import { setSearchValue } from './searchSlice';
 
-const SearchForm = () => {
-    const [value, setValue] = useState('');
+const SearchForm = (props) => {
+    const [value, setValue] = useState(props.initialValue);
+    const debouncedValue = useDebounce(value, DEBOUNCE_DELAY);
+    const [isRedirect, setIsRedirect] = useState(false);
+    const dispatch = useDispatch();
+
     const changeHandler = (evt) => {
         setValue(evt.target.value);
     };
 
-    const results = useSelector((state) => {
-        return state.search.list;
-    });
-
-    const dispatch = useDispatch();
-
-    const debouncedValue = useDebounce(value, 1000);
-
-    useEffect(() => {
-        const promise = dispatch(fetchSuggestions(debouncedValue));
-        return () => {
-            if (promise) {
-                promise.abort();
-            }
-        };
-    }, [debouncedValue, dispatch]);
-
     const submitHandler = (evt) => {
         evt.preventDefault();
-        dispatch(fetchSuggestions(value));
+        setIsRedirect(true);
     };
+
+    useEffect(() => {
+        dispatch(setSearchValue(debouncedValue));
+    }, [debouncedValue, dispatch]);
+
     return (
-        <form onSubmit={(evt) => submitHandler(evt)}>
-            <input
-                onChange={(evt) => changeHandler(evt)}
-                type="text"
-                name="search"
-                value={value}
-            />
-            {results && <SearchSuggestions suggestions={results} />}
-            <button>Поиск</button>
-        </form>
+        <>
+            {isRedirect && (
+                <Redirect
+                    push
+                    to={{ pathname: '/search', search: `?search=${value}` }}
+                />
+            )}
+            <form onSubmit={(evt) => submitHandler(evt)} action="/search">
+                <input
+                    onChange={(evt) => changeHandler(evt)}
+                    type="text"
+                    name="search"
+                    value={value}
+                />
+                <button type="submit">Поиск</button>
+            </form>
+        </>
     );
 };
 
