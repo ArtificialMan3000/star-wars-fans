@@ -1,17 +1,16 @@
 import React from 'react';
-import style from './favorites.module.css';
 import capitalize from 'lodash.capitalize';
 
 const FavoritesColumn = (props) => {
-    const favoritesList = props.list.map((id) => (
-        <li key={`${props.type}/${id}`}>
-            <a href={`${props.type}/${id}`}>{id.title || id.name}</a>
+    const favoritesList = props.list.map((item) => (
+        <li key={`${props.type}/${item.itemId}`}>
+            <a href={`${props.type}/${item.itemId}`}>{item.title}</a>
         </li>
     ));
     return (
-        <div className={style.favoritesColumn}>
+        <div className="favorites-column">
             <h2>{capitalize(props.type)}</h2>
-            <ul className={style.favoritesList}>{favoritesList}</ul>
+            <ul>{favoritesList}</ul>
         </div>
     );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './history.module.css';
 import capitalize from 'lodash.capitalize';
 
 const HistoryColumn = (props) => {
@@ -11,9 +10,9 @@ const HistoryColumn = (props) => {
         </li>
     ));
     return (
-        <div className={style.historyColumn}>
+        <div className="history-column">
             <h2>{capitalize(props.type)}</h2>
-            <ul className={style.historyList}>{historyList}</ul>
+            <ul>{historyList}</ul>
         </div>
     );
 };
