@@ -168,14 +168,18 @@ button:active {
     padding: 1rem 1rem;
     background-color: #333fac;
     width: 98vw;
-    text-align: center;
+    text-align: left;
     align-self: flex-end;
 }
 
+.footer span {
+    font-size: 1.4rem;
+}
+
 .link {
-    margin: 1rem 1rem;
-    font-size: large;
-    color: white;
+    margin: 0 0 0 1rem;
+    font-size: 1.4rem;
+    color: black;
 }
 
 .link:hover {

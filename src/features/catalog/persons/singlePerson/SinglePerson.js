@@ -16,11 +16,13 @@ const SinglePerson = () => {
     const renderDescription = (person) => {
         return (
             <dl className="person-specifications">
-                <dt className="specification-name">Birth year</dt>
+                <dt className="specification-name">Birth year:</dt>
                 <dd className="specification-value">{person.birth_year}</dd>
-                <dt className="specification-name">Height</dt>
+                <br />
+                <dt className="specification-name">Height:</dt>
                 <dd className="specification-value">{person.height}</dd>
-                <dt className="specification-name">Eye color</dt>
+                <br />
+                <dt className="specification-name">Eye color:</dt>
                 <dd className="specification-value">{person.eye_color}</dd>
             </dl>
         );
