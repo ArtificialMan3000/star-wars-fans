@@ -35,5 +35,5 @@
 * features/history/History.js
 * features/history/HistoryColumn.js
 
-Команды для установки и сборки - стандартные для create-react-app (шаблон redux)
+Команды для установки и сборки - стандартные для create-react-app (шаблон redux) <br>
 Сборка производилась через yarn
