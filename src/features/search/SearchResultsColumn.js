@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './search.module.css';
 import capitalize from 'lodash.capitalize';
 
 const SearchResultsColumn = (props) => {
@@ -16,9 +15,9 @@ const SearchResultsColumn = (props) => {
         </li>
     ));
     return (
-        <div className={style.resultsColumn}>
-            <h2>{capitalize(props.resultsEntry.type)}</h2>
-            <ul className={style.resultsList}>{searchResults}</ul>
+        <div className="search-column">
+            <h2>{capitalize(props.resultsEntry.type)}:</h2>
+            <ul>{searchResults}</ul>
         </div>
     );
 };

@@ -34,12 +34,15 @@ const SearchForm = (props) => {
             )}
             <form onSubmit={(evt) => submitHandler(evt)} action="/search">
                 <input
+                    className="search-input"
                     onChange={(evt) => changeHandler(evt)}
                     type="text"
                     name="search"
                     value={value}
                 />
-                <button type="submit">Поиск</button>
+                <button className="search-button" type="submit">
+                    Поиск
+                </button>
             </form>
         </>
     );

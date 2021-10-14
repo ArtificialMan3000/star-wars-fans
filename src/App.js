@@ -17,6 +17,7 @@ import { NotFound } from './features/notFound/NotFound';
 import { ProtectedRoute } from './auxiliary/routeWrappers/ProtectedRoute';
 import { AuthRoute } from './auxiliary/routeWrappers/AuthRoute';
 import { useSelector } from 'react-redux';
+import { Footer } from './features/footer/Footer';
 
 export function App() {
     const { userIsLogged, userName } = useSelector((state) => state.auth.user);
@@ -56,6 +57,7 @@ export function App() {
                 <Route exact path="/404" component={NotFound} />
                 <Redirect to="/404" />
             </Switch>
+            <Footer />
         </div>
     );
 }

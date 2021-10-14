@@ -6,8 +6,16 @@ export function NotLoggedHead() {
         <nav className="header">
             <ul>
                 <li>
-                    <Link to="/" style={{ marginRight: '5rem' }}>
-                        logo
+                    <Link
+                        to="/"
+                        style={{
+                            marginRight: '5rem',
+                            padding: '0.1rem 0.1rem',
+                            color: 'black',
+                            border: 'solid',
+                        }}
+                    >
+                        Star Wars Fans
                     </Link>
                 </li>
                 <li>
