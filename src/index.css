@@ -184,3 +184,7 @@ button:active {
 .link:hover {
     color: rgb(118, 176, 196);
 }
+
+.catalog-image {
+    margin: 0.5rem 0.5rem;
+}

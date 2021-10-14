@@ -7,6 +7,11 @@ import {
     addToFavoritesThunk,
     removeFromFavoritesThunk,
 } from '../favorites/favoritesThunks';
+import {
+    getPersonImage,
+    getPlanetImage,
+    getFilmImage,
+} from '../../auxiliary/getImages';
 
 // Карточка элемента каталога
 function SingleCatalogItem(props) {
@@ -67,6 +72,18 @@ function SingleCatalogItem(props) {
                 <div className={`single-${type}`}>
                     <h1>{catalogItem.title || catalogItem.name}</h1>
                     {renderDescription(catalogItem)}
+                    <div className="catalog-image">
+                        <img
+                            src={
+                                type === 'people'
+                                    ? getPersonImage(itemId)
+                                    : type === 'films'
+                                    ? getFilmImage(itemId)
+                                    : getPlanetImage(itemId)
+                            }
+                            alt={catalogItem.title || catalogItem.name}
+                        />
+                    </div>
                     {!isInFavorite && (
                         <button
                             onClick={() =>
