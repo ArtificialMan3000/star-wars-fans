@@ -7,6 +7,11 @@ import {
     addToFavoritesThunk,
     removeFromFavoritesThunk,
 } from '../favorites/favoritesThunks';
+import {
+    getPersonImage,
+    getPlanetImage,
+    getFilmImage,
+} from '../../auxiliary/getImages';
 
 // Карточка элемента каталога
 function SingleCatalogItem(props) {
@@ -44,12 +49,12 @@ function SingleCatalogItem(props) {
     ///////////////////////////////////////////////////////////////////////
     const login = useSelector((state) => state.auth.user.userName);
     const favorites = useSelector((state) => state.auth.favorites)[type];
-    const index = favorites.findIndex((el) => el === `${itemId}`);
+    const index = favorites.findIndex((el) => el.itemId === `${itemId}`);
     const isInFavorite = index === -1 ? false : true;
 
     /*                         Buttons On Click Handlers                 */
-    const addToFavoritesHandler = () => {
-        dispatch(addToFavoritesThunk(login, type, itemId));
+    const addToFavoritesHandler = (title) => {
+        dispatch(addToFavoritesThunk(login, type, itemId, title));
     };
 
     const removeFromFavoritesHandler = () => {
@@ -67,8 +72,26 @@ function SingleCatalogItem(props) {
                 <div className={`single-${type}`}>
                     <h1>{catalogItem.title || catalogItem.name}</h1>
                     {renderDescription(catalogItem)}
+                    <div className="catalog-image">
+                        <img
+                            src={
+                                type === 'people'
+                                    ? getPersonImage(itemId)
+                                    : type === 'films'
+                                    ? getFilmImage(itemId)
+                                    : getPlanetImage(itemId)
+                            }
+                            alt={catalogItem.title || catalogItem.name}
+                        />
+                    </div>
                     {!isInFavorite && (
-                        <button onClick={addToFavoritesHandler}>
+                        <button
+                            onClick={() =>
+                                addToFavoritesHandler(
+                                    catalogItem.title || catalogItem.name
+                                )
+                            }
+                        >
                             Добавить в избранное
                         </button>
                     )}

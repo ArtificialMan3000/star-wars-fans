@@ -27,7 +27,9 @@ const authSlice = createSlice({
             state.user.userIsLogged = false;
         },
         addToFavorites(state, action) {
-            state.favorites[action.payload.type].push(...action.payload.id);
+            state.favorites[action.payload.type].push(
+                ...action.payload.itemObj
+            );
         },
         addToHistory(state, action) {
             state.history[action.payload.type].push(...action.payload.query);

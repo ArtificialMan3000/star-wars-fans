@@ -1,6 +1,5 @@
 import React from 'react';
 import { SearchResultsColumn } from './SearchResultsColumn';
-import style from './search.module.css';
 
 const SearchResults = (props) => {
     const searchResults = props.results.map(
@@ -13,7 +12,7 @@ const SearchResults = (props) => {
                 />
             )
     );
-    return <div className={style.results}>{searchResults}</div>;
+    return <>{searchResults}</>;
 };
 
 export { SearchResults };

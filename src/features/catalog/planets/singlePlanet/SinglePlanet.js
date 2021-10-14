@@ -16,11 +16,13 @@ const SinglePlanet = () => {
     const renderDescription = (planet) => {
         return (
             <dl className="planet-specifications">
-                <dt className="specification-name">Climate</dt>
+                <dt className="specification-name">Climate:</dt>
                 <dd className="specification-value">{planet.climate}</dd>
-                <dt className="specification-name">Diameter</dt>
+                <br />
+                <dt className="specification-name">Diameter:</dt>
                 <dd className="specification-value">{planet.diameter}</dd>
-                <dt className="specification-name">Terrain</dt>
+                <br />
+                <dt className="specification-name">Terrain:</dt>
                 <dd className="specification-value">{planet.terrain}</dd>
             </dl>
         );
