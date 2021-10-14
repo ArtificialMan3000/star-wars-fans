@@ -2,16 +2,20 @@ import React from 'react';
 import capitalize from 'lodash.capitalize';
 
 const HistoryColumn = (props) => {
-    const historyList = props.list.map((historyItem) => (
-        <li key={historyItem.url}>
-            <a href={`${historyItem.type}/${historyItem.id}`}>
-                {historyItem.title || historyItem.name}
-            </a>
-        </li>
-    ));
+    const type = props.type;
+    const historyList = props.list.map((historyItem) => {
+        const id = historyItem.id;
+        const url = `/${type}/${id}`;
+        const title = historyItem.title;
+        return (
+            <li key={url}>
+                <a href={url}>{title}</a>
+            </li>
+        );
+    });
     return (
         <div className="history-column">
-            <h2>{capitalize(props.type)}:</h2>
+            <h2>{capitalize(type)}:</h2>
             <ul>{historyList}</ul>
         </div>
     );
