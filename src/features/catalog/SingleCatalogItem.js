@@ -18,8 +18,6 @@ function SingleCatalogItem(props) {
         renderDescription,
     } = props;
 
-    console.log(itemData);
-
     // Забираем данные об элементе из стора
     const [catalogItem, fetchStatus, fetchError] = itemData;
 
