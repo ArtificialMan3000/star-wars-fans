@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 //eslint-disable-next-line
 import { removeFromHistoryThunk } from './historyThunks';
-import style from './history.module.css';
 import { HistoryColumn } from './HistoryColumn';
+import style from './history.module.css';
 
 export function History() {
     //eslint-disable-next-line

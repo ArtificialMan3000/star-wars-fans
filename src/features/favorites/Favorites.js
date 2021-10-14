@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 //eslint-disable-next-line
 import { removeFromFavoritesThunk } from './favoritesThunks';
+import { FavoritesColumn } from './FavoritesColumn';
+import style from './favorites.module.css';
 
 export function Favorites() {
     //eslint-disable-next-line
@@ -30,9 +32,24 @@ export function Favorites() {
     //
     ///////////////////////////////////////////////////////////////////////////////
 
-    return (
-        <div className="body">
-            <h3>Избранное</h3>
-        </div>
-    );
+    // return (
+    //     <div className="body">
+    //         <h1>Избранное</h1>
+    //         <div className={style.favorites}>
+    //             {planets.length > 0 && (
+    //                 <FavoritesColumn key="films" list={films} type="films" />
+    //             )}
+    //             {planets.length > 0 && (
+    //                 <FavoritesColumn key="people" list={people} type="people" />
+    //             )}
+    //             {planets.length > 0 && (
+    //                 <FavoritesColumn
+    //                     key="planets"
+    //                     list={planets}
+    //                     type="planets"
+    //                 />
+    //             )}
+    //         </div>
+    //     </div>
+    // );
 }
