@@ -17,7 +17,7 @@ const createFetchCatalogListThunk = (type, apiUrl) => {
     return createAsyncThunk(type, payloadCreator);
 };
 
-// Thunk для запроса одноо элемента каталога
+// Thunk для запроса одного элемента каталога
 const createFetchCatalogItemThunk = (type, apiUrl) => {
     const payloadCreator = async (filmId, { rejectWithValue }) => {
         try {
