@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { API_URL } from '../../../apiConfig';
 
 // Thunk для запроса списка элементов каталога
 const createFetchCatalogListThunk = (type, apiUrl) => {
