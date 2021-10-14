@@ -176,6 +176,18 @@ button:active {
     list-style: none;
 }
 
+.favorite-button {
+    background-color: #124cb9e0;
+    border-color: #124cb9e0;
+    color: white;
+    font-weight: bold;
+}
+
+.favorite-button:hover {
+    background-color: #095cf7b4;
+    border-color: #095cf7b4;
+}
+
 .footer {
     grid-area: footer;
     padding: 1rem 1rem;

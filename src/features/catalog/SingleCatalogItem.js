@@ -86,6 +86,7 @@ function SingleCatalogItem(props) {
                     </div>
                     {!isInFavorite && (
                         <button
+                            className="favorite-button"
                             onClick={() =>
                                 addToFavoritesHandler(
                                     catalogItem.title || catalogItem.name
@@ -96,7 +97,10 @@ function SingleCatalogItem(props) {
                         </button>
                     )}
                     {isInFavorite && (
-                        <button onClick={removeFromFavoritesHandler}>
+                        <button
+                            className="favorite-button"
+                            onClick={removeFromFavoritesHandler}
+                        >
                             Удалить из избранного
                         </button>
                     )}
