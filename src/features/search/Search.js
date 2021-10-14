@@ -31,9 +31,13 @@ const Search = () => {
         }
     }, [fetchStatus, searchValue, dispatch]);
 
-    // При клике на ссылку результата добавляем её в историю
-    const resultLinkClickHandler = (type, url) => {
-        dispatch(addToHistoryThunk(login, type, url));
+    /**
+     * При клике на ссылку результата добавляет запись в историю
+     * @param {String} type Тип записи (фильмы, персонажи или планеты)
+     * @param {Object} query Запись в формате {id: 1, title: 'Skywalker'}
+     */
+    const resultLinkClickHandler = (type, query) => {
+        dispatch(addToHistoryThunk(login, type, query));
     };
 
     return (
