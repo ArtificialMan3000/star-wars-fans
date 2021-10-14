@@ -7,23 +7,30 @@ import {
 
 export function setFavoritesStateThunk({ films, people, planets }) {
     return function (dispatch) {
-        dispatch(addToFavorites({ type: 'films', id: films }));
-        dispatch(addToFavorites({ type: 'people', id: people }));
-        dispatch(addToFavorites({ type: 'planets', id: planets }));
+        dispatch(addToFavorites({ type: 'films', itemObj: films }));
+        dispatch(addToFavorites({ type: 'people', itemObj: people }));
+        dispatch(addToFavorites({ type: 'planets', itemObj: planets }));
     };
 }
 
-export function addToFavoritesThunk(login, type, itemId) {
+export function addToFavoritesThunk(login, type, itemId, title) {
     return function (dispatch) {
         dispatch(loading());
 
         let data = localStorage.getItem(login);
         data = JSON.parse(data);
 
-        data.favorites[type].push(itemId);
+        let item = {
+            itemId,
+            title,
+        };
+
+        data.favorites[type].push(item);
         localStorage.setItem(login, JSON.stringify(data));
 
-        dispatch(addToFavorites({ type, id: itemId }));
+        item = [item];
+
+        dispatch(addToFavorites({ type, itemObj: item }));
         dispatch(idle());
     };
 }

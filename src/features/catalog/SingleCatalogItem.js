@@ -46,12 +46,12 @@ function SingleCatalogItem(props) {
     ///////////////////////////////////////////////////////////////////////
     const login = useSelector((state) => state.auth.user.userName);
     const favorites = useSelector((state) => state.auth.favorites)[type];
-    const index = favorites.findIndex((el) => el === `${itemId}`);
+    const index = favorites.findIndex((el) => el.itemId === `${itemId}`);
     const isInFavorite = index === -1 ? false : true;
 
     /*                         Buttons On Click Handlers                 */
-    const addToFavoritesHandler = () => {
-        dispatch(addToFavoritesThunk(login, type, itemId));
+    const addToFavoritesHandler = (title) => {
+        dispatch(addToFavoritesThunk(login, type, itemId, title));
     };
 
     const removeFromFavoritesHandler = () => {
@@ -70,7 +70,13 @@ function SingleCatalogItem(props) {
                     <h1>{catalogItem.title || catalogItem.name}</h1>
                     {renderDescription(catalogItem)}
                     {!isInFavorite && (
-                        <button onClick={addToFavoritesHandler}>
+                        <button
+                            onClick={() =>
+                                addToFavoritesHandler(
+                                    catalogItem.title || catalogItem.name
+                                )
+                            }
+                        >
                             Добавить в избранное
                         </button>
                     )}
