@@ -32,7 +32,7 @@ const authSlice = createSlice({
             );
         },
         addToHistory(state, action) {
-            state.history[action.payload.type].push(...action.payload.query);
+            state.history[action.payload.type].push(...action.payload.queryObj);
         },
         removeFromFavorites(state, action) {
             state.favorites[action.payload.type].splice(

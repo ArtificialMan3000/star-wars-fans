@@ -60,7 +60,7 @@ h2 {
 }
 
 .header a:active {
-    color: rgb(240, 240, 74);
+    color: black;
 }
 
 a {
@@ -87,18 +87,18 @@ button {
     margin: 0.3rem 0;
     font: inherit;
     cursor: pointer;
-    background-color: #3576b3;
+    background-color: #000c77e7;
     color: white;
     padding: 0.5rem 1.5rem;
-    border: 1px solid #3576b3;
+    border: 1px solid #000c77e7;
     border-radius: 4px;
     font-weight: bold;
 }
 
 button:hover,
 button:active {
-    background-color: #3c89d1;
-    border-color: #3c89d1;
+    background-color: #343e99;
+    border-color: #343e99;
 }
 
 .search-container,
@@ -115,6 +115,7 @@ button:active {
 .main-head {
     margin: 1rem 0;
     text-align: center;
+    align-self: flex-start;
     grid-area: main-head;
 }
 
@@ -195,6 +196,10 @@ button:active {
 
 .link:hover {
     color: rgb(118, 176, 196);
+}
+
+.link:active {
+    color: white;
 }
 
 .catalog-image {

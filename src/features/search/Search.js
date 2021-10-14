@@ -15,7 +15,9 @@ const Search = () => {
     const [initialValue] = useSearchParams(['search']);
     const [results, fetchStatus] = useSelector(searchSelector);
     const searchValue = useSelector(searchValueSelector);
+
     const login = useSelector((state) => state.auth.user.userName);
+    const history = useSelector((state) => state.auth.history);
 
     const dispatch = useDispatch();
 
@@ -36,8 +38,18 @@ const Search = () => {
      * @param {String} type Тип записи (фильмы, персонажи или планеты)
      * @param {Object} query Запись в формате {id: 1, title: 'Skywalker'}
      */
-    const resultLinkClickHandler = (type, query) => {
-        dispatch(addToHistoryThunk(login, type, query));
+    const resultLinkClickHandler = (type, queryObj) => {
+        if (login === '') {
+            return;
+        }
+        const isInHistory = history[type].find(
+            (el) => el.id === `${queryObj.id}`
+        );
+
+        if (isInHistory) {
+            return;
+        }
+        dispatch(addToHistoryThunk(login, type, queryObj));
     };
 
     return (

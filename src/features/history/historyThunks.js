@@ -7,25 +7,25 @@ import {
 
 export function setHistoryStateThunk({ films, people, planets }) {
     return function (dispatch) {
-        dispatch(addToHistory({ type: 'films', query: films }));
-        dispatch(addToHistory({ type: 'people', query: people }));
-        dispatch(addToHistory({ type: 'planets', query: planets }));
+        dispatch(addToHistory({ type: 'films', queryObj: films }));
+        dispatch(addToHistory({ type: 'people', queryObj: people }));
+        dispatch(addToHistory({ type: 'planets', queryObj: planets }));
     };
 }
 
-export function addToHistoryThunk(login, type, query) {
+export function addToHistoryThunk(login, type, obj) {
     return function (dispatch) {
         dispatch(loading());
-
-        console.log(query);
 
         let data = localStorage.getItem(login);
         data = JSON.parse(data);
 
-        data.history[type].push(query);
+        data.history[type].push(obj);
         localStorage.setItem(login, JSON.stringify(data));
 
-        dispatch(addToHistory({ type, query }));
+        obj = [obj];
+
+        dispatch(addToHistory({ type, queryObj: obj }));
         dispatch(idle());
     };
 }

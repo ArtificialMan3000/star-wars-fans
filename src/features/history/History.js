@@ -10,7 +10,7 @@ export function History() {
         <div className="body">
             <div className="history-container">
                 <div className="main-head">
-                    <h2>История поиска</h2>
+                    <h1>История поиска</h1>
                 </div>
                 <div className="history-body">
                     {films.length > 0 && (
