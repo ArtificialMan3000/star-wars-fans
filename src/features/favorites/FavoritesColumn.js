@@ -9,7 +9,7 @@ const FavoritesColumn = (props) => {
     ));
     return (
         <div className="favorites-column">
-            <h2>{capitalize(props.type)}</h2>
+            <h2>{capitalize(props.type)}:</h2>
             <ul>{favoritesList}</ul>
         </div>
     );

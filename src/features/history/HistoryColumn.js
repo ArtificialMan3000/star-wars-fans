@@ -11,7 +11,7 @@ const HistoryColumn = (props) => {
     ));
     return (
         <div className="history-column">
-            <h2>{capitalize(props.type)}</h2>
+            <h2>{capitalize(props.type)}:</h2>
             <ul>{historyList}</ul>
         </div>
     );
