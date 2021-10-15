@@ -6,7 +6,6 @@ const API_PLANETS = 'planets/';
 const API_SPECIES = 'species/';
 const API_STARSHIPS = 'starships/';
 const API_VEHICLES = 'vehicles/';
-const DEBOUNCE_DELAY = 700;
 
 // Новая структура хранения API данных
 const API_URLS = {
@@ -40,7 +39,6 @@ export {
     API_SPECIES,
     API_STARSHIPS,
     API_VEHICLES,
-    DEBOUNCE_DELAY,
     URL_IMAGE_PERSON,
     URL_IMAGE_PLANET,
     URL_IMAGE_FILM,

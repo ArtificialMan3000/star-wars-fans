@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
-import { DEBOUNCE_DELAY } from '../../apiConfig';
+import { DEBOUNCE_DELAY } from './searchConfig';
 import { useDebounce } from '../../auxiliary/customHooks/useDebounce';
 import { setSearchValue } from './searchSlice';
 
