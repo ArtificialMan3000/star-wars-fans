@@ -1,6 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL, API_FILMS, API_PEOPLE, API_PLANETS } from '../../apiConfig';
-import { doFetchFullResults } from '../../auxiliary/apiHelpers';
+import {
+    API_URL,
+    API_FILMS,
+    API_PEOPLE,
+    API_PLANETS,
+} from '../../auxiliary/API/apiConfig';
+import { doFetchFullResults } from '../../auxiliary/API/apiHelpers';
 
 const entriesForSearch = [
     { type: 'films', url: `${API_URL}${API_FILMS}` },

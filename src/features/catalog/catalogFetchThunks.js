@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URLS } from '../../apiConfig';
+import { API_URLS } from '../../auxiliary/API/apiConfig';
 import {
     doFetchSingleItem,
     doFetchFullResults,
-} from '../../auxiliary/apiHelpers';
+} from '../../auxiliary/API/apiHelpers';
 import { selectCatalogItem } from './catalogSelectors';
 
 // Запускает запрос элемента, если его нет в кеше

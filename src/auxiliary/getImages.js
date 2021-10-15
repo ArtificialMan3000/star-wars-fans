@@ -3,7 +3,7 @@ import {
     URL_IMAGE_PLANET,
     URL_IMAGE_FILM,
     IMAGE_EXTENSION,
-} from '../apiConfig';
+} from './API/apiConfig';
 
 export function getPersonImage(id) {
     return `${URL_IMAGE_PERSON}/${id}${IMAGE_EXTENSION}`;
