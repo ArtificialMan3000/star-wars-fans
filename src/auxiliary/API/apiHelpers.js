@@ -1,6 +1,6 @@
 import camelcase from 'lodash.camelcase';
 
-// Методы вывода описаний для разных типов элементов
+// Способы вывода описаний для разных типов элементов
 const VIEW_METHODS = {
     films: {
         method: 'description',
