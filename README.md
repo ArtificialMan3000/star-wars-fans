@@ -27,7 +27,8 @@
 
 -   auxiliary/customHooks/useDebounce.js
 -   auxiliary/customHooks/useSearchParams.js
--   auxiliary/apiHelpers.js
+-   auxiliary/API/apiHelpers.js
+-   auxiliary/utilities/normalCase.js
 -   features/catalog - весь
 -   features/search - весь
 -   features/favorites/Favorites.js
