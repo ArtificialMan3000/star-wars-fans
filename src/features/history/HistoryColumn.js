@@ -5,7 +5,7 @@ const HistoryColumn = (props) => {
     const type = props.type;
     const historyList = props.list.map((historyItem) => {
         const id = historyItem.id;
-        const url = `/${type}/${id}`;
+        const url = `/catalog/${type}/${id}`;
         const title = historyItem.title;
         return (
             <li key={url}>

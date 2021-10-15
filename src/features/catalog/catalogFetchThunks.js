@@ -1,37 +1,41 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API_URLS } from '../../apiConfig';
+import {
+    doFetchSingleItem,
+    doFetchFullResults,
+} from '../../auxiliary/apiHelpers';
 
-// Thunk для запроса списка элементов каталога
-const createFetchCatalogListThunk = (type, apiUrl) => {
-    const payloadCreator = async (_, { rejectWithValue }) => {
+// Thunk для запроса каталога по категории
+const fetchCatalogCategory = createAsyncThunk(
+    'catalog/fetchCatalogCategory',
+    async (type, { rejectWithValue }) => {
+        const fullUrl = `${API_URLS.base}${API_URLS[type]}`;
         try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error('Ошибка запроса');
-            }
-            const data = await response.json();
-            return data.results;
+            const results = await doFetchFullResults(fullUrl);
+            return { type, result: results };
         } catch (error) {
             return rejectWithValue(error.message);
         }
-    };
-    return createAsyncThunk(type, payloadCreator);
-};
+    }
+);
 
 // Thunk для запроса одного элемента каталога
-const createFetchCatalogItemThunk = (type, apiUrl) => {
-    const payloadCreator = async (filmId, { rejectWithValue }) => {
+const fetchCatalogItem = createAsyncThunk(
+    'catalog/fetchCatalogItem',
+    async ({ type, id, url }, { rejectWithValue }) => {
+        // TODO Добавить форматирование url
+        const fullUrl = url || `${API_URLS.base}/${type}/${id}`;
+        if (!fullUrl) {
+            rejectWithValue('Некорректные входные данные');
+        }
         try {
-            const response = await fetch(`${apiUrl}${filmId}`);
-            if (!response.ok) {
-                throw new Error('Ошибка запроса');
-            }
-            const data = await response.json();
-            return data;
+            const result = await doFetchSingleItem(fullUrl);
+            type = type || result.type;
+            return { type, result };
         } catch (error) {
             return rejectWithValue(error.message);
         }
-    };
-    return createAsyncThunk(type, payloadCreator);
-};
+    }
+);
 
-export { createFetchCatalogListThunk, createFetchCatalogItemThunk };
+export { fetchCatalogCategory, fetchCatalogItem };
