@@ -17,8 +17,8 @@ import { selectCatalogItem } from '../catalogSelectors';
 function SingleItemCard(props) {
     const { type, id: itemId } = props;
     // Забираем данные о элементе из кеша
-    const itemData = useSelector(
-        selectCatalogItem(type, {
+    const itemData = useSelector((state) =>
+        selectCatalogItem(state, type, {
             id: itemId,
         })
     );

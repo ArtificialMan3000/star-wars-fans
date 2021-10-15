@@ -13,6 +13,10 @@ const VIEW_METHODS = {
         method: 'specificationsList',
         fields: ['climate', 'diameter', 'terrain'],
     },
+    default: {
+        method: 'specificationsList',
+        fields: [],
+    },
 };
 
 // Преобразует пришедшие данные для работы на фронтенде
@@ -33,7 +37,8 @@ const transformResult = (result) => {
     transformedResult.title = transformedResult.title || transformedResult.name;
 
     // Добавляем метод вывода описания элемента
-    transformedResult.view = VIEW_METHODS[transformedResult.type];
+    transformedResult.view =
+        VIEW_METHODS[transformedResult.type] || VIEW_METHODS.default;
 
     return transformedResult;
 };

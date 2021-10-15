@@ -7,7 +7,8 @@ import { selectCatalogListItems } from '../catalogSelectors';
 const CategoryList = (props) => {
     const { type } = props;
     // Забираем данные о элементе из кеша
-    const listData = useSelector(selectCatalogListItems(type)) || [];
+    const listData =
+        useSelector((state) => selectCatalogListItems(state, type)) || [];
 
     return (
         <div className="catalog-grid">

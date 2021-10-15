@@ -24,7 +24,7 @@ const Category = () => {
     return (
         <>
             <div className="body">
-                <h1>{CATALOG_STRINGS[type].categoryHeader}</h1>
+                <h1>{CATALOG_STRINGS[type]?.categoryHeader}</h1>
                 {fetchStatus === 'loading' && <LoadingMessage />}
                 {fetchError && <ErrorMessage error={fetchError} />}
                 <CategoryList type={type} />

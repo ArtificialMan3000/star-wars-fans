@@ -4,6 +4,17 @@ import {
     doFetchSingleItem,
     doFetchFullResults,
 } from '../../auxiliary/apiHelpers';
+import { selectCatalogItem } from './catalogSelectors';
+
+// Запускает запрос элемента, если его нет в кеше
+const getCatalogItemThunk = ({ type, id, url }) => {
+    return (dispatch, getState) => {
+        const item = selectCatalogItem(getState(), type, { id, url });
+        if (!item) {
+            dispatch(fetchCatalogItem({ type, id, url }));
+        }
+    };
+};
 
 // Thunk для запроса каталога по категории
 const fetchCatalogCategory = createAsyncThunk(
@@ -38,4 +49,4 @@ const fetchCatalogItem = createAsyncThunk(
     }
 );
 
-export { fetchCatalogCategory, fetchCatalogItem };
+export { getCatalogItemThunk, fetchCatalogCategory, fetchCatalogItem };

@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { LoadingMessage } from '../messages/LoadingMessage';
 import { ErrorMessage } from '../messages/ErrorMessage';
 import { selectCatalogStatus } from '../catalogSelectors';
-import { fetchCatalogItem } from '../catalogFetchThunks';
+import { getCatalogItemThunk } from '../catalogFetchThunks';
 import { SingleItemCard } from './SingleItemCard';
 
 // Карточка элемента каталога
@@ -14,13 +14,13 @@ function SingleItem() {
 
     // Данные о статусе запроса
     const [fetchStatus, fetchError] = useSelector(selectCatalogStatus);
-    console.log('status', fetchStatus);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getCatalogItemThunk({ id, type }));
         // Посылаем запрос
-        dispatch(fetchCatalogItem({ id, type }));
+        // dispatch(fetchCatalogItem({ id, type }));
     }, [id, type, dispatch]);
 
     return (
