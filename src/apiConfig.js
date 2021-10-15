@@ -1,3 +1,4 @@
+// TODO Удалить старую структуру хранения API
 const API_URL = 'https://swapi.dev/api/';
 const API_FILMS = 'films/';
 const API_PEOPLE = 'people/';
@@ -6,6 +7,17 @@ const API_SPECIES = 'species/';
 const API_STARSHIPS = 'starships/';
 const API_VEHICLES = 'vehicles/';
 const DEBOUNCE_DELAY = 700;
+
+// Новая структура хранения API данных
+const API_URLS = {
+    base: 'https://swapi.dev/api/',
+    films: 'films/',
+    people: 'people/',
+    planets: 'planets/',
+    species: 'species/',
+    starships: 'starships/',
+    vehicles: 'vehicles/',
+};
 
 // images:
 const IMAGE_ROOT = 'https://starwars-visualguide.com/assets/img/';
@@ -20,6 +32,7 @@ const URL_IMAGE_FILM = `${IMAGE_ROOT}${IMAGE_FILMS}`;
 const IMAGE_EXTENSION = '.jpg';
 
 export {
+    API_URLS,
     API_URL,
     API_FILMS,
     API_PEOPLE,

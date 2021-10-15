@@ -1,18 +1,18 @@
-// Получает данные списка элементов
-const createCatalogListDataSelector = (sliceName) => {
-    return (state) => [
-        state[sliceName].list,
-        state[sliceName].status,
-        state[sliceName].error,
-    ];
-};
-// Получает данные одного элемента
-const createCatalogSingleDataSelector = (sliceName) => {
-    return (state) => [
-        state[sliceName].item,
-        state[sliceName].status,
-        state[sliceName].error,
-    ];
+// Получает списочные элементы каталога определённой категории
+const selectCatalogListItems = (state, type) =>
+    state.catalog.cache.listItems[type];
+
+// Получает элемент каталога
+const selectCatalogItem = (state, type, { id, url }) => {
+    return state.catalog.cache.items[type]?.find((item) => {
+        const res = id ? Number(item.id) === Number(id) : item.url === url;
+        return res;
+    });
 };
 
-export { createCatalogListDataSelector, createCatalogSingleDataSelector };
+// Получает статус запроса
+const selectCatalogStatus = (state) => {
+    return [state.catalog.status, state.catalog.error];
+};
+
+export { selectCatalogListItems, selectCatalogItem, selectCatalogStatus };

@@ -3,7 +3,7 @@ import capitalize from 'lodash.capitalize';
 
 const SearchResultsColumn = (props) => {
     const searchResults = props.resultsEntry.results.map((result) => {
-        const url = `/${result.type}/${result.id}`;
+        const url = `/catalog/${result.type}/${result.id}`;
         const id = result.id;
         const title = result.title || result.name;
         const type = result.type;

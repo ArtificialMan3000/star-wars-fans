@@ -3,12 +3,8 @@ import { IsLoggedHead } from './features/header/IsLoggedHead';
 import { NotLoggedHead } from './features/header/NotLoggedHead';
 import { Signin } from './features/authorization/Signin';
 import { Signup } from './features/authorization/Signup';
-import { FilmsList } from './features/catalog/films/filmsList/FilmsList';
-import { SingleFilm } from './features/catalog/films/singleFilm/SingleFilm';
-import { PersonsList } from './features/catalog/persons/personsList/PersonsList';
-import { SinglePerson } from './features/catalog/persons/singlePerson/SinglePerson';
-import { PlanetsList } from './features/catalog/planets/planetsList/PlanetsList';
-import { SinglePlanet } from './features/catalog/planets/singlePlanet/SinglePlanet';
+import { Category } from './features/catalog/category/Category';
+import { SingleItem } from './features/catalog/item/SingleItem';
 import { MainPage } from './features/mainPage/MainPage';
 import { Favorites } from './features/favorites/Favorites';
 import { History } from './features/history/History';
@@ -33,23 +29,15 @@ export function App() {
                 <Route exact path="/" component={MainPage} />
                 <AuthRoute exact path="/signin" component={Signin} />
                 <AuthRoute exact path="/signup" component={Signup} />
-                <ProtectedRoute exact path="/films" component={FilmsList} />
                 <ProtectedRoute
                     exact
-                    path="/films/:id"
-                    component={SingleFilm}
+                    path="/catalog/:type"
+                    component={Category}
                 />
-                <ProtectedRoute exact path="/people" component={PersonsList} />
                 <ProtectedRoute
                     exact
-                    path="/people/:id"
-                    component={SinglePerson}
-                />
-                <ProtectedRoute exact path="/planets" component={PlanetsList} />
-                <ProtectedRoute
-                    exact
-                    path="/planets/:id"
-                    component={SinglePlanet}
+                    path="/catalog/:type/:id"
+                    component={SingleItem}
                 />
                 <ProtectedRoute exact path="/favorites" component={Favorites} />
                 <ProtectedRoute exact path="/history" component={History} />

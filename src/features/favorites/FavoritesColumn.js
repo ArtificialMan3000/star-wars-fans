@@ -4,7 +4,7 @@ import capitalize from 'lodash.capitalize';
 const FavoritesColumn = (props) => {
     const favoritesList = props.list.map((item) => (
         <li key={`${props.type}/${item.itemId}`}>
-            <a href={`${props.type}/${item.itemId}`}>{item.title}</a>
+            <a href={`/catalog/${props.type}/${item.itemId}`}>{item.title}</a>
         </li>
     ));
     return (

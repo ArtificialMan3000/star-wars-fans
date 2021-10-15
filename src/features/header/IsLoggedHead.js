@@ -22,13 +22,13 @@ export function IsLoggedHead({ userName }) {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/films">Фильмы</Link>
+                    <Link to="/catalog/films">Фильмы</Link>
                 </li>
                 <li>
-                    <Link to="/people">Персонажи</Link>
+                    <Link to="/catalog/people">Персонажи</Link>
                 </li>
                 <li>
-                    <Link to="/planets">Планеты</Link>
+                    <Link to="/catalog/planets">Планеты</Link>
                 </li>
                 <li>
                     <Link to="/favorites">Избранное</Link>

@@ -217,3 +217,7 @@ button:active {
 .catalog-image {
     margin: 0.5rem 0.5rem;
 }
+
+.error-message {
+    color: red;
+}
