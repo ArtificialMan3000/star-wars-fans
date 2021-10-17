@@ -82,6 +82,7 @@ function SingleItemCard(props) {
             </div>
             {!isInFavorite && (
                 <button
+                    className="favorite-button"
                     onClick={() =>
                         addToFavoritesHandler(itemData.title || itemData.name)
                     }
@@ -90,7 +91,10 @@ function SingleItemCard(props) {
                 </button>
             )}
             {isInFavorite && (
-                <button onClick={removeFromFavoritesHandler}>
+                <button
+                    className="favorite-button"
+                    onClick={removeFromFavoritesHandler}
+                >
                     Удалить из избранного
                 </button>
             )}

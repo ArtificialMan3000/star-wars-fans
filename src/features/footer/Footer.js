@@ -4,6 +4,14 @@ export function Footer() {
             <span style={{ color: 'white' }}>Alexander Bosikov :</span>
             <a
                 className="link"
+                href="https://t.me/ArtificialMan"
+                rel="noreferrer"
+                target="_blank"
+            >
+                TELEGRAM
+            </a>
+            <a
+                className="link"
                 href="https://github.com/ArtificialMan3000"
                 rel="noreferrer"
                 target="_blank"
