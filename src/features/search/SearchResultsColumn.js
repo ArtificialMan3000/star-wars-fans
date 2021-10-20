@@ -5,7 +5,7 @@ const SearchResultsColumn = (props) => {
     const searchResults = props.resultsEntry.results.map((result) => {
         const url = `/catalog/${result.type}/${result.id}`;
         const id = result.id;
-        const title = result.title || result.name;
+        const title = result.title;
         const type = result.type;
         return (
             <li key={url}>

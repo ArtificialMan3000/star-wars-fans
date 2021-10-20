@@ -1,51 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSearchResults } from './searchFetchThunk';
+import { setPending, setError, resetStatus } from './helpers';
 
 const initialState = {
-    value: '',
+    query: '',
     results: [],
     status: 'idle',
     error: null,
-    history: [],
 };
 
 const searchSlice = createSlice({
     name: 'search',
     initialState,
     reducers: {
-        setSearchValue: (state, action) => {
-            state.value = action.payload;
-        },
-        resetSearchStatus: (state) => {
-            state.status = 'idle';
+        setSearchQuery: (state, action) => {
+            state.query = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchSearchResults.pending, (state) => {
-                state.status = 'pending';
-                state.error = 'null';
+                setPending(state);
             })
-            .addCase(fetchSearchResults.fulfilled, (state, action) => {
-                state.status = 'fulfilled';
-                state.results = action.payload || [];
+            .addCase(fetchSearchResults.fulfilled, (state, { payload }) => {
+                resetStatus(state);
+                state.results = payload || [];
             })
-            .addCase(fetchSearchResults.rejected, (state, action) => {
-                state.status = 'rejected';
-                state.error = action.payload;
-            });
+            .addCase(
+                fetchSearchResults.rejected,
+                (state, { payload: error }) => {
+                    setError(state, error);
+                }
+            );
     },
 });
 
-// Получает данные о результатах поиска
-const searchSelector = (state) => [
-    state.search.results,
-    state.search.status,
-    state.search.error,
-];
-
-const searchValueSelector = (state) => state.search.value;
-
 export const searchReducer = searchSlice.reducer;
-export const { setSearchValue, resetSearchStatus } = searchSlice.actions;
-export { searchSelector, searchValueSelector };
+export const { setSearchQuery } = searchSlice.actions;
