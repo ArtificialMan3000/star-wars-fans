@@ -10,7 +10,7 @@ import {
     getPersonImage,
     getPlanetImage,
     getFilmImage,
-} from '../../../auxiliary/getImages';
+} from '../../../auxiliary/API/getImages';
 import { selectCatalogItem } from '../catalogSelectors';
 
 // Карточка элемента каталога

@@ -1,4 +1,4 @@
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import { IsLoggedHead } from './features/header/IsLoggedHead';
 import { NotLoggedHead } from './features/header/NotLoggedHead';
 import { Signin } from './features/authorization/Signin';
@@ -17,6 +17,8 @@ import { Footer } from './features/footer/Footer';
 
 export function App() {
     const { userIsLogged, userName } = useSelector((state) => state.auth.user);
+    let routeMatch = useRouteMatch();
+    console.log(routeMatch);
 
     return (
         <div className="container">
