@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import capitalize from 'lodash.capitalize';
 
 const FavoritesColumn = (props) => {
     const favoritesList = props.list.map((item) => (
         <li key={`${props.type}/${item.itemId}`}>
-            <a href={`/catalog/${props.type}/${item.itemId}`}>{item.title}</a>
+            <Link to={`/catalog/${props.type}/${item.itemId}`}>
+                {item.title}
+            </Link>
         </li>
     ));
     return (
