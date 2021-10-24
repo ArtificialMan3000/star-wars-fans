@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import capitalize from 'lodash.capitalize';
 
 const SearchResultsColumn = (props) => {
@@ -9,18 +10,17 @@ const SearchResultsColumn = (props) => {
         const type = result.type;
         return (
             <li key={url}>
-                <a
-                    // При клике передаём данные для записи в историю поиска
+                <Link // При клике передаём данные для записи в историю поиска
                     onClick={() =>
                         props.resultLinkClickHandler(type, {
                             id,
                             title,
                         })
                     }
-                    href={url}
+                    to={url}
                 >
                     {title}
-                </a>
+                </Link>
             </li>
         );
     });

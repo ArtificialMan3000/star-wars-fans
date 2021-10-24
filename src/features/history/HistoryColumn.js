@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import capitalize from 'lodash.capitalize';
 
 const HistoryColumn = (props) => {
@@ -9,7 +10,7 @@ const HistoryColumn = (props) => {
         const title = historyItem.title;
         return (
             <li key={url}>
-                <a href={url}>{title}</a>
+                <Link to={url}>{title}</Link>
             </li>
         );
     });
