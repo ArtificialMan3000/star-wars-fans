@@ -11,7 +11,7 @@ import {
     getPersonImage,
     getPlanetImage,
     getFilmImage,
-} from '../../auxiliary/getImages';
+} from '../../auxiliary/API/getImages';
 
 // Карточка элемента каталога
 function SingleCatalogItem(props) {
