@@ -20,7 +20,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build && gulp docs",
+        "build": "react-scripts build && gulp docs && cp docs/index.html docs/404.html",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
