@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/andersen-project/static/css/main.75d5a3f9.chunk.css",
-    "main.js": "/andersen-project/static/js/main.bb82dda0.chunk.js",
-    "main.js.map": "/andersen-project/static/js/main.bb82dda0.chunk.js.map",
-    "runtime-main.js": "/andersen-project/static/js/runtime-main.5e477005.js",
-    "runtime-main.js.map": "/andersen-project/static/js/runtime-main.5e477005.js.map",
-    "static/js/2.9d57368a.chunk.js": "/andersen-project/static/js/2.9d57368a.chunk.js",
-    "static/js/2.9d57368a.chunk.js.map": "/andersen-project/static/js/2.9d57368a.chunk.js.map",
-    "index.html": "/andersen-project/index.html",
-    "static/css/main.75d5a3f9.chunk.css.map": "/andersen-project/static/css/main.75d5a3f9.chunk.css.map",
-    "static/js/2.9d57368a.chunk.js.LICENSE.txt": "/andersen-project/static/js/2.9d57368a.chunk.js.LICENSE.txt"
+    "main.css": "/star-wars-fans/static/css/main.03a23e1e.chunk.css",
+    "main.js": "/star-wars-fans/static/js/main.26e4ae05.chunk.js",
+    "main.js.map": "/star-wars-fans/static/js/main.26e4ae05.chunk.js.map",
+    "runtime-main.js": "/star-wars-fans/static/js/runtime-main.322edfaa.js",
+    "runtime-main.js.map": "/star-wars-fans/static/js/runtime-main.322edfaa.js.map",
+    "static/js/2.96c3b132.chunk.js": "/star-wars-fans/static/js/2.96c3b132.chunk.js",
+    "static/js/2.96c3b132.chunk.js.map": "/star-wars-fans/static/js/2.96c3b132.chunk.js.map",
+    "index.html": "/star-wars-fans/index.html",
+    "static/css/main.03a23e1e.chunk.css.map": "/star-wars-fans/static/css/main.03a23e1e.chunk.css.map",
+    "static/js/2.96c3b132.chunk.js.LICENSE.txt": "/star-wars-fans/static/js/2.96c3b132.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5e477005.js",
-    "static/js/2.9d57368a.chunk.js",
-    "static/css/main.75d5a3f9.chunk.css",
-    "static/js/main.bb82dda0.chunk.js"
+    "static/js/runtime-main.322edfaa.js",
+    "static/js/2.96c3b132.chunk.js",
+    "static/css/main.03a23e1e.chunk.css",
+    "static/js/main.26e4ae05.chunk.js"
   ]
 }
