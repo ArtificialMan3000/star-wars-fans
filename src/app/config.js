@@ -1,3 +1,3 @@
 export const APP_CONFIG = {
-    rootUrlPath: '/andersen-project',
+    rootUrlPath: '/star-wars-fans',
 };
