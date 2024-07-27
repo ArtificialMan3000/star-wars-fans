@@ -1,8 +1,8 @@
 {
-    "name": "andersen-project",
+    "name": "star-wars-fans",
     "version": "0.1.0",
     "private": true,
-    "homepage": "/andersen-project/",
+    "homepage": "https://artificialman3000.github.io/star-wars-fans/",
     "dependencies": {
         "@reduxjs/toolkit": "^1.5.1",
         "@testing-library/jest-dom": "^4.2.4",
@@ -44,3 +44,4 @@
         "webpack-cli": "^4.9.1"
     }
 }
+
